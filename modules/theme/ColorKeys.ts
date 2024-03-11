@@ -8,6 +8,7 @@ export enum ColorsKeys {
     secondaryCTA = 'secondaryCTA',
     alert = "alert",
     text = "text",
+    text600 = "text600",
     text500 = "text500",
     text400 = "text400"
 }

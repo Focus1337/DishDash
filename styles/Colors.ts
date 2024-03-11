@@ -29,6 +29,9 @@ export const Colors: Record<ColorsKeys, IColorsValues> = {
     text: {
         default: '#052C05'
     },
+    text600: {
+        default: '#001E00'
+    },
     text500: {
         default: '#052C05'
     },

@@ -8,6 +8,7 @@ export interface IColors {
     secondaryCTA: string,
     alert: string,
     text: string,
+    text600: string,
     text500: string,
     text400: string
 }
