@@ -7,6 +7,14 @@ export const useStyles = (colors: IColors) =>
             color: 'white'
         },
 
+        text600: {
+            color: colors.text600
+        },
+
+        textAlert: {
+            color: colors.alert
+        },
+
         textMedium: {
             fontWeight: "500"
         },
@@ -77,6 +85,15 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
+        textBody30: {
+            fontFamily: 'Cabin',
+            fontStyle: 'normal',
+            fontSize: 30,
+            lineHeight: 39,
+            fontWeight: '700',
+            color: colors.text600
+        },
+
         textBody20: {
             fontFamily: 'Montserrat',
             fontStyle: 'normal',
@@ -133,6 +150,10 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
+        buttonWhite: {
+            backgroundColor: 'white'
+        },
+
         buttonPrimaryCTA: {
             backgroundColor: colors.primaryCTA
         },
@@ -145,19 +166,31 @@ export const useStyles = (colors: IColors) =>
             backgroundColor: colors.secondary
         },
 
+        buttonWidth100: {
+            width: '100%'
+        },
+
+        buttonWidth40: {
+            width: '40%'
+        },
+
         buttonFilled: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: 14,
-            paddingVertical: 10,
-            gap: 10,
-            position: 'absolute',
-            width: 152,
-            height: 56,
-            left: 96,
-            top: 100,
+            justifyContent: 'center',
+            paddingHorizontal: 10,
+            paddingVertical: 14,
             borderRadius: 100
-        }
+        },
+
+        buttonOutlined: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 10,
+            paddingVertical: 14,
+            borderRadius: 100,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            borderColor: colors.text600
+        },
+
     });

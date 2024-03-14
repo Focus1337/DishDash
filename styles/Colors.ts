@@ -37,5 +37,8 @@ export const Colors: Record<ColorsKeys, IColorsValues> = {
     },
     text400: {
         default: '#354D35'
+    },
+    text200: {
+        default: '#B2BBB2'
     }
 };

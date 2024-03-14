@@ -6,6 +6,9 @@ import Navigation from "./utils/navigation/Navigation";
 import {NativeStackParamList} from "./utils/navigation/navigationTypes.ts";
 import {useTheme} from "./hooks/useTheme.ts";
 import {WelcomeScreen} from "./screens/WelcomeScreen.tsx";
+import {AllergyScreen} from "./screens/preferences/AllergyScreen.tsx";
+import {DietScreen} from "./screens/preferences/DietScreen.tsx";
+import {CuisineScreen} from "./screens/preferences/CuisineScreen.tsx";
 
 const Stack = createNativeStackNavigator<NativeStackParamList>();
 export default function App() {
@@ -14,11 +17,9 @@ export default function App() {
         <NavigationContainer ref={Navigation.navigationRef}>
             <Stack.Navigator initialRouteName={'Welcome'}>
                 <Stack.Screen name={'Welcome'} component={WelcomeScreen} options={{headerShown: false}}/>
-                {/*<Stack.Screen name={'TodoItem'} component={TodoItemScreen}*/}
-                {/*              options={({route}) =>*/}
-                {/*                  ({title: `Task ${route.params.itemId}`})}/>*/}
-                {/*<Stack.Screen name={'DoneList'} component={DoneListScreen} options={{headerShown: false}}/>*/}
-                {/*<Stack.Screen name={'Logs'} component={LogsScreen} options={{headerShown: false}}/>*/}
+                <Stack.Screen name={'Allergy'} component={AllergyScreen} options={{headerShown: false}}/>
+                <Stack.Screen name={'Diet'} component={DietScreen} options={{headerShown: false}}/>
+                <Stack.Screen name={'Cuisine'} component={CuisineScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
             <ThemedStatusBar/>
         </NavigationContainer>
