@@ -1,5 +1,7 @@
 import {StyleSheet, Text, View} from "react-native";
 import React from "react";
+import {useTheme} from "../hooks/useTheme.ts";
+import {useStyles} from "../hooks/useStyles.ts";
 
 interface IPageNumberProps {
     pageNumber: number,
@@ -7,9 +9,12 @@ interface IPageNumberProps {
 }
 
 export const PageNumber = (props: IPageNumberProps) => {
+    const {Colors} = useTheme();
+    const styles = useStyles(Colors);
+
     return (
-        <View style={[localStyles.page, props.isActive ? localStyles.pageActive : {}]}>
-            <Text>{props.pageNumber}</Text>
+        <View style={[localStyles.page, props.isActive ? {borderColor: Colors.text600} : {}]}>
+            <Text style={props.isActive ? styles.text600 : {}}>{props.pageNumber}</Text>
         </View>
     );
 };

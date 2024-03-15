@@ -6,6 +6,7 @@ import {Alert, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, Vie
 import {AllergyScreenProps} from "../../utils/navigation/navigationTypes.ts";
 import {FilledMainButton, OutlinedMainButton} from "../../components/Button.tsx";
 import {PageNumber} from "../../components/PageNumber.tsx";
+import {OptionButton} from "../../components/OptionButton.tsx";
 
 let allergies = ['Shrimp', 'Carrot', 'Mushroom', 'Onion', 'Bell Pepper', 'Garlic', 'Apple', 'Eggplant', 'Banana'];
 
@@ -39,7 +40,8 @@ export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
                     <Text style={styles.textBody16}>This will help us curate more recipe experiences for you.</Text>
                 </View>
 
-                <ScrollView style={localStyles.mainChoose}>
+                <ScrollView contentContainerStyle={localStyles.mainChoose}>
+                    {allergies.map(a => <OptionButton text={a}/>)}
                 </ScrollView>
             </View>
             <View style={localStyles.controls}>
@@ -81,7 +83,14 @@ let localStyles = StyleSheet.create({
 
     mainText: {},
 
-    mainChoose: {},
+    mainChoose: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 10,
+        borderWidth: 1,
+        borderColor: 'green'
+    },
 
     controls: {
         display: 'flex',
