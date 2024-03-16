@@ -2,7 +2,7 @@ import {observer} from "mobx-react";
 import React, {useState} from "react";
 import {useTheme} from "../../hooks/useTheme.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
-import {Alert, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, SafeAreaView, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View} from "react-native";
 import {AllergyScreenProps} from "../../utils/navigation/navigationTypes.ts";
 import {FilledMainButton, OutlinedMainButton} from "../../components/Button.tsx";
 import {PageNumber} from "../../components/PageNumber.tsx";
@@ -19,6 +19,13 @@ export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
     const handleNextStep = () => navigation.navigate("Diet");
     const handleSkip = () => {
         Alert.alert("Skipped", "skip")
+    };
+    const handleAdd = (value: string) => {
+        Alert.alert(value);
+    };
+
+    const handleRemove = (value: string) => {
+        Alert.alert("removed: " + value);
     };
 
     return (
@@ -41,7 +48,8 @@ export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
                 </View>
 
                 <ScrollView contentContainerStyle={localStyles.mainChoose}>
-                    {allergies.map(a => <OptionButton text={a}/>)}
+                    {allergies.map(a => <OptionButton key={a} text={a} onActivate={() => handleAdd(a)}
+                                                      onDeactivate={() => handleRemove(a)}/>)}
                 </ScrollView>
             </View>
             <View style={localStyles.controls}>

@@ -1,20 +1,33 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React from "react";
+import {Alert, GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, {useState} from "react";
 import {useTheme} from "../hooks/useTheme.ts";
 import {useStyles} from "../hooks/useStyles.ts";
 
 interface IOptionButtonProps {
     text: string,
+    onActivate: (event: GestureResponderEvent) => void,
+    onDeactivate: (event: GestureResponderEvent) => void,
 }
 
 export const OptionButton = (props: IOptionButtonProps) => {
+    let [pressed, setPressed] = useState<boolean>(false);
     const {Colors} = useTheme();
     const styles = useStyles(Colors);
 
+    const handleOnPress = (event: GestureResponderEvent) => {
+        if (pressed) {
+            props.onDeactivate(event);
+        } else {
+            props.onActivate(event);
+        }
+
+        setPressed(!pressed);
+    }
+
     return (
-        <TouchableOpacity style={localStyles.option}>
-            <Text style={styles.text600}>🦐</Text>
-            <Text style={styles.text600}>{props.text}</Text>
+        <TouchableOpacity style={[localStyles.option, pressed ? styles.buttonPrimaryCTA : {}]} onPress={handleOnPress}>
+            <Text style={pressed ? styles.textWhite : styles.text600}>🦐</Text>
+            <Text style={pressed ? styles.textWhite : styles.text600}>{props.text}</Text>
         </TouchableOpacity>
     );
 }
