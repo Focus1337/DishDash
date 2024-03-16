@@ -1,6 +1,6 @@
 import {GestureResponderEvent, Pressable, StyleProp, Text, TextStyle, ViewStyle} from "react-native";
 import React from "react";
-import {useTheme} from "../hooks/useTheme.ts";
+import {useColors} from "../hooks/useColors.ts";
 import {useStyles} from "../hooks/useStyles.ts";
 
 interface IBaseButtonProps {
@@ -27,7 +27,7 @@ interface IButtonProps {
 }
 
 export const FilledMainButton = (props: IButtonProps) => {
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     return <BaseButton onPress={props.onPress}
@@ -37,7 +37,7 @@ export const FilledMainButton = (props: IButtonProps) => {
 }
 
 export const OutlinedMainButton = (props: IButtonProps) => {
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     return <BaseButton onPress={props.onPress}

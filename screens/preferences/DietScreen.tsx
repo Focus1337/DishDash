@@ -1,6 +1,6 @@
 import {observer} from "mobx-react";
 import React, {useState} from "react";
-import {useTheme} from "../../hooks/useTheme.ts";
+import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import {Alert, SafeAreaView} from "react-native";
 import {CuisineScreenProps, DietScreenProps} from "../../utils/navigation/navigationTypes.ts";

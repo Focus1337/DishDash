@@ -1,6 +1,6 @@
 import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity} from "react-native";
 import React, {useState} from "react";
-import {useTheme} from "../hooks/useTheme.ts";
+import {useColors} from "../hooks/useColors.ts";
 import {useStyles} from "../hooks/useStyles.ts";
 
 interface IOptionButtonProps {
@@ -11,7 +11,7 @@ interface IOptionButtonProps {
 
 export const OptionButton = (props: IOptionButtonProps) => {
     let [pressed, setPressed] = useState<boolean>(false);
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     const handleOnPress = (event: GestureResponderEvent) => {

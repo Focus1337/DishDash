@@ -4,18 +4,20 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Navigation from "./utils/navigation/Navigation";
 import {NativeStackParamList} from "./utils/navigation/navigationTypes.ts";
-import {useTheme} from "./hooks/useTheme.ts";
+import {useColors} from "./hooks/useColors.ts";
 import {WelcomeScreen} from "./screens/WelcomeScreen.tsx";
 import {AllergyScreen} from "./screens/preferences/AllergyScreen.tsx";
 import {DietScreen} from "./screens/preferences/DietScreen.tsx";
 import {CuisineScreen} from "./screens/preferences/CuisineScreen.tsx";
+import {TabNavigationContainer} from "./screens/TabNavigationContainer.tsx";
 
 const Stack = createNativeStackNavigator<NativeStackParamList>();
 export default function App() {
 
     return (
         <NavigationContainer ref={Navigation.navigationRef}>
-            <Stack.Navigator initialRouteName={'Welcome'} screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
+            <Stack.Navigator initialRouteName={'Tab'} screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
+                <Stack.Screen name={'Tab'} component={TabNavigationContainer} options={{headerShown: false}}/>
                 <Stack.Screen name={'Welcome'} component={WelcomeScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Allergy'} component={AllergyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Diet'} component={DietScreen} options={{headerShown: false}}/>
@@ -27,6 +29,6 @@ export default function App() {
 }
 
 const ThemedStatusBar = () => {
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     return <StatusBar barStyle={'dark-content'} backgroundColor={Colors.backgroundPrimary}/>
 }

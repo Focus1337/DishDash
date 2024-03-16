@@ -3,7 +3,7 @@ import {Colors} from "../styles/Colors.ts";
 import {ColorsKeys} from "../modules/theme/ColorKeys.ts";
 import {useMemo} from "react";
 
-export const useTheme = (): { Colors: IColors; } => {
+export const useColors = (): { Colors: IColors; } => {
     const colors = useMemo<IColors>(() => {
         const result = {};
         const keys = Object.keys(Colors) as Array<ColorsKeys>;

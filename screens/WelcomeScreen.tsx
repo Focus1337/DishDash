@@ -1,13 +1,13 @@
 import {ImageBackground, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {WelcomeScreenProps} from "../utils/navigation/navigationTypes.ts";
 import {useStyles} from "../hooks/useStyles.ts";
-import {useTheme} from "../hooks/useTheme.ts";
+import {useColors} from "../hooks/useColors.ts";
 import {observer} from "mobx-react";
-import {FilledMainButton} from "../components/Button.tsx";
+import {FilledMainButton} from "../components/buttons.tsx";
 import {APP_NAME} from "../utils/env.ts";
 
 export const WelcomeScreen = observer(({navigation}: WelcomeScreenProps) => {
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     const handlePress = () => navigation.navigate("Allergy");

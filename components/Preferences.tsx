@@ -1,9 +1,9 @@
-import {useTheme} from "../hooks/useTheme.ts";
+import {useColors} from "../hooks/useColors.ts";
 import {useStyles} from "../hooks/useStyles.ts";
 import {GestureResponderEvent, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {PageNumber} from "./PageNumber.tsx";
 import {OptionButton} from "./OptionButton.tsx";
-import {FilledMainButton, OutlinedMainButton} from "./Button.tsx";
+import {FilledMainButton, OutlinedMainButton} from "./buttons.tsx";
 import React from "react";
 
 interface IPreferencesProps {
@@ -21,7 +21,7 @@ interface IPreferencesProps {
 }
 
 export const Preferences = (props: IPreferencesProps) => {
-    const {Colors} = useTheme();
+    const {Colors} = useColors();
     const styles = useStyles(Colors);
     const pages = [];
 

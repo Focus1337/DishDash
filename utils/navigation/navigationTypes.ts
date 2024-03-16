@@ -1,10 +1,13 @@
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 
 export type NativeStackParamList = {
-    Welcome: undefined;
+    Welcome: undefined,
     Allergy: undefined,
     Cuisine: undefined,
-    Diet: undefined
+    Diet: undefined,
+    SearchResult: undefined,
+    RecipeDetails: undefined,
+    Tab: undefined
     // TodoItem: { itemId: string };
 };
 
@@ -12,3 +15,15 @@ export type WelcomeScreenProps = NativeStackScreenProps<NativeStackParamList, 'W
 export type AllergyScreenProps = NativeStackScreenProps<NativeStackParamList, 'Allergy'>;
 export type CuisineScreenProps = NativeStackScreenProps<NativeStackParamList, 'Cuisine'>;
 export type DietScreenProps = NativeStackScreenProps<NativeStackParamList, 'Diet'>;
+export type SearchResultScreenProps = NativeStackScreenProps<NativeStackParamList, 'SearchResult'>;
+export type RecipeDetailsScreenProps = NativeStackScreenProps<NativeStackParamList, 'RecipeDetails'>;
+
+export type TabParamList = {
+    Explore: undefined,
+    RecipesScreen: undefined,
+    Profile: undefined
+};
+
+export type ExploreScreenProps = NativeStackScreenProps<TabParamList, 'Explore'>;
+export type RecipesScreenProps = NativeStackScreenProps<TabParamList, 'RecipesScreen'>;
+export type ProfileScreenProps = NativeStackScreenProps<TabParamList, 'Profile'>;
