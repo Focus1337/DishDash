@@ -1,4 +1,4 @@
-import {Alert, GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity} from "react-native";
 import React, {useState} from "react";
 import {useTheme} from "../hooks/useTheme.ts";
 import {useStyles} from "../hooks/useStyles.ts";
@@ -26,8 +26,8 @@ export const OptionButton = (props: IOptionButtonProps) => {
 
     return (
         <TouchableOpacity style={[localStyles.option, pressed ? styles.buttonPrimaryCTA : {}]} onPress={handleOnPress}>
-            <Text style={pressed ? styles.textWhite : styles.text600}>🦐</Text>
-            <Text style={pressed ? styles.textWhite : styles.text600}>{props.text}</Text>
+            <Text style={[styles.textBody14M, pressed ? styles.textWhite : {color: Colors.text600}]}>🦐</Text>
+            <Text style={[styles.textBody14M, pressed ? styles.textWhite : {color: Colors.text600}]}>{props.text}</Text>
         </TouchableOpacity>
     );
 }
@@ -44,7 +44,8 @@ let localStyles = StyleSheet.create({
         borderWidth: 1,
         gap: 6,
         borderStyle: 'solid',
-        borderColor: '#C9CDC9'
+        borderColor: '#C9CDC9',
+        backgroundColor: 'white'
     }
 });
 

@@ -13,17 +13,15 @@ export const PageNumber = (props: IPageNumberProps) => {
     const styles = useStyles(Colors);
 
     return (
-        <View style={[localStyles.page, props.isActive ? {borderColor: Colors.text600} : {}]}>
-            <Text style={props.isActive ? styles.text600 : {}}>{props.pageNumber}</Text>
+        <View
+            style={[localStyles.page, {borderColor: Colors.text200}, props.isActive ? {borderColor: Colors.text500} : {}]}>
+            <Text
+                style={[styles.textBody14M, props.isActive ? {color: Colors.text500} : {color: Colors.text200}]}>{props.pageNumber}</Text>
         </View>
     );
 };
 
 let localStyles = StyleSheet.create({
-    pageActive: {
-        borderColor: '#052C05'
-    },
-
     page: {
         display: 'flex',
         alignItems: 'center',
@@ -32,7 +30,6 @@ let localStyles = StyleSheet.create({
         padding: 2,
         borderRadius: 13,
         borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#B2BBB2'
+        borderStyle: 'solid'
     },
 });

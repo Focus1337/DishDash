@@ -15,7 +15,7 @@ export default function App() {
 
     return (
         <NavigationContainer ref={Navigation.navigationRef}>
-            <Stack.Navigator initialRouteName={'Welcome'}>
+            <Stack.Navigator initialRouteName={'Welcome'} screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
                 <Stack.Screen name={'Welcome'} component={WelcomeScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Allergy'} component={AllergyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Diet'} component={DietScreen} options={{headerShown: false}}/>

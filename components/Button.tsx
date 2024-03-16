@@ -30,14 +30,18 @@ export const FilledMainButton = (props: IButtonProps) => {
     const {Colors} = useTheme();
     const styles = useStyles(Colors);
 
-    return <BaseButton onPress={props.onPress} buttonStyles={[styles.buttonFilled, styles.buttonPrimaryCTA, props.buttonStyles]}
-                       textStyles={[styles.textWhite, styles.buttonPrimaryCTA]} title={props.title}/>
+    return <BaseButton onPress={props.onPress}
+                       buttonStyles={[styles.buttonFilled, styles.buttonPrimaryCTA, props.buttonStyles]}
+                       textStyles={[styles.buttonPrimaryCTA, styles.textBody16M, styles.buttonText, styles.textWhite]}
+                       title={props.title}/>
 }
 
 export const OutlinedMainButton = (props: IButtonProps) => {
     const {Colors} = useTheme();
     const styles = useStyles(Colors);
 
-    return <BaseButton onPress={props.onPress} buttonStyles={[styles.buttonOutlined, styles.buttonWhite, props.buttonStyles]}
-                       textStyles={[styles.text600]} title={props.title}/>
+    return <BaseButton onPress={props.onPress}
+                       buttonStyles={[styles.buttonOutlined, styles.buttonWhite, props.buttonStyles]}
+                       textStyles={[styles.textBody16M, styles.buttonText, {color: Colors.text600}]}
+                       title={props.title}/>
 }

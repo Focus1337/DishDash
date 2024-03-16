@@ -18,7 +18,7 @@ export const WelcomeScreen = observer(({navigation}: WelcomeScreenProps) => {
                 <View style={{flex: 2}}></View>
                 <View style={localStyles.main}>
                     <Text style={[styles.textHeader2, styles.textWhite]}>{APP_NAME}</Text>
-                    <Text style={[styles.textBody16, styles.textRegular, styles.textWhite, {textAlign: 'center'}]}>Welcome
+                    <Text style={[styles.textBody16R, styles.textWhite, {textAlign: 'center'}]}>Welcome
                         to Dish Dash where you virtually travel
                         the world through recipes.</Text>
                     <FilledMainButton onPress={handlePress} title="Get Started" buttonStyles={styles.buttonWidth100}/>

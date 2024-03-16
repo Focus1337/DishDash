@@ -26,9 +26,6 @@ export const Colors: Record<ColorsKeys, IColorsValues> = {
     alert: {
         default: '#F85657'
     },
-    text: {
-        default: '#052C05'
-    },
     text600: {
         default: '#001E00'
     },
@@ -40,5 +37,8 @@ export const Colors: Record<ColorsKeys, IColorsValues> = {
     },
     text200: {
         default: '#B2BBB2'
+    },
+    outline: {
+        default: '#C9CDC9'
     }
 };

@@ -7,10 +7,6 @@ export const useStyles = (colors: IColors) =>
             color: 'white'
         },
 
-        text600: {
-            color: colors.text600
-        },
-
         textAlert: {
             color: colors.alert
         },
@@ -24,61 +20,55 @@ export const useStyles = (colors: IColors) =>
         },
 
         textHeader1: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 48,
             lineHeight: 62,
             color: colors.text600
         },
 
         textHeader2: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 40,
             lineHeight: 48,
             color: colors.text600
         },
 
         textHeader3: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 36,
             lineHeight: 44,
             color: colors.text600
         },
 
         textHeader4: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 24,
             lineHeight: 32,
             color: colors.text600
         },
 
         textHeader5: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 32,
             lineHeight: 40,
             color: colors.text600
         },
 
         textHeader6: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
-            fontWeight: "700",
             fontSize: 20,
             lineHeight: 32,
             color: colors.text600
         },
 
         textBody24: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Bold',
             fontStyle: 'normal',
             fontSize: 24,
             lineHeight: 36,
@@ -86,16 +76,15 @@ export const useStyles = (colors: IColors) =>
         },
 
         textBody30: {
-            fontFamily: 'Cabin',
+            fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',
             fontSize: 30,
             lineHeight: 39,
-            fontWeight: '700',
             color: colors.text600
         },
 
         textBody20: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
             fontSize: 20,
             lineHeight: 28,
@@ -103,15 +92,23 @@ export const useStyles = (colors: IColors) =>
         },
 
         textBody18: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
             fontSize: 18,
             lineHeight: 27,
             color: colors.text600
         },
 
-        textBody16: {
-            fontFamily: 'Montserrat',
+        textBody16R: {
+            fontFamily: 'Montserrat-Regular',
+            fontStyle: 'normal',
+            fontSize: 16,
+            lineHeight: 24,
+            color: colors.text600
+        },
+
+        textBody16M: {
+            fontFamily: 'Montserrat-Medium',
             fontStyle: 'normal',
             fontSize: 16,
             lineHeight: 24,
@@ -119,15 +116,23 @@ export const useStyles = (colors: IColors) =>
         },
 
         textBody15: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
             fontSize: 15,
             lineHeight: 24,
             color: colors.text600
         },
 
-        textBody14: {
-            fontFamily: 'Montserrat',
+        textBody14R: {
+            fontFamily: 'Montserrat-Regular',
+            fontStyle: 'normal',
+            fontSize: 14,
+            lineHeight: 21,
+            color: colors.text600
+        },
+
+        textBody14M: {
+            fontFamily: 'Montserrat-Medium',
             fontStyle: 'normal',
             fontSize: 14,
             lineHeight: 21,
@@ -135,7 +140,7 @@ export const useStyles = (colors: IColors) =>
         },
 
         textBody12: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
             fontSize: 12,
             lineHeight: 18,
@@ -143,7 +148,7 @@ export const useStyles = (colors: IColors) =>
         },
 
         textBody10: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
             fontSize: 10,
             lineHeight: 15,
@@ -152,6 +157,10 @@ export const useStyles = (colors: IColors) =>
 
         buttonWhite: {
             backgroundColor: 'white'
+        },
+
+        buttonText: {
+            fontFamily: 'Montserrat-SemiBold',
         },
 
         buttonPrimaryCTA: {
@@ -190,7 +199,7 @@ export const useStyles = (colors: IColors) =>
             borderRadius: 100,
             borderWidth: 1,
             borderStyle: 'solid',
-            borderColor: colors.text600
+            borderColor: colors.outline
         },
 
     });

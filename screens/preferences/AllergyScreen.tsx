@@ -1,8 +1,8 @@
 import {observer} from "mobx-react";
-import React, {useState} from "react";
+import React from "react";
 import {useTheme} from "../../hooks/useTheme.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
-import {Alert, SafeAreaView, ScrollView, StyleSheet, Text, ToastAndroid, TouchableOpacity, View} from "react-native";
+import {Alert, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {AllergyScreenProps} from "../../utils/navigation/navigationTypes.ts";
 import {FilledMainButton, OutlinedMainButton} from "../../components/Button.tsx";
 import {PageNumber} from "../../components/PageNumber.tsx";
@@ -11,7 +11,6 @@ import {OptionButton} from "../../components/OptionButton.tsx";
 let allergies = ['Shrimp', 'Carrot', 'Mushroom', 'Onion', 'Bell Pepper', 'Garlic', 'Apple', 'Eggplant', 'Banana'];
 
 export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
-    let [title, setTitle] = useState<string>('');
     const {Colors} = useTheme();
     const styles = useStyles(Colors);
 
@@ -38,16 +37,16 @@ export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
                         <PageNumber pageNumber={3} isActive={false}/>
                     </View>
                     <TouchableOpacity onPress={handleSkip}>
-                        <Text style={styles.textAlert}>Skip</Text>
+                        <Text style={[styles.textBody16M, styles.textAlert]}>Skip</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={localStyles.mainText}>
+                <View style={{gap: 10}}>
                     <Text style={styles.textBody30}>Do you have any allergies or dislikes?</Text>
-                    <Text style={styles.textBody16}>This will help us curate more recipe experiences for you.</Text>
+                    <Text style={styles.textBody16R}>This will help us curate more recipe experiences for you.</Text>
                 </View>
 
-                <ScrollView contentContainerStyle={localStyles.mainChoose}>
+                <ScrollView style={{marginTop: 10}} contentContainerStyle={localStyles.mainChoose}>
                     {allergies.map(a => <OptionButton key={a} text={a} onActivate={() => handleAdd(a)}
                                                       onDeactivate={() => handleRemove(a)}/>)}
                 </ScrollView>
@@ -70,9 +69,7 @@ let localStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         padding: 20,
-        gap: 20,
-        borderWidth: 1,
-        borderColor: 'red'
+        gap: 20
     },
 
     mainHeader: {
@@ -89,15 +86,11 @@ let localStyles = StyleSheet.create({
         gap: 8,
     },
 
-    mainText: {},
-
     mainChoose: {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 10,
-        borderWidth: 1,
-        borderColor: 'green'
+        gap: 10
     },
 
     controls: {
@@ -108,8 +101,6 @@ let localStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
-        marginBottom: 32,
-        borderWidth: 1,
-        borderColor: 'blue'
+        marginBottom: 32
     }
 });

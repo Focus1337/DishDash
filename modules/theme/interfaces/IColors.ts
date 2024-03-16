@@ -10,5 +10,7 @@ export interface IColors {
     text: string,
     text600: string,
     text500: string,
-    text400: string
+    text400: string,
+    text200: string,
+    outline: string
 }
