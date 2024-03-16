@@ -59,8 +59,8 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
-        textHeader6: {
-            fontFamily: 'Cabin-Bold',
+        textHeader6S: {
+            fontFamily: 'Cabin-SemiBold',
             fontStyle: 'normal',
             fontSize: 20,
             lineHeight: 32,

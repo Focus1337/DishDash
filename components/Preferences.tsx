@@ -67,7 +67,6 @@ let localStyles = StyleSheet.create({
     },
 
     main: {
-        display: 'flex',
         flex: 1,
         flexDirection: 'column',
         padding: 20,
