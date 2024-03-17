@@ -1,7 +1,7 @@
 import {GestureResponderEvent, StyleSheet, Text, TouchableOpacity} from "react-native";
 import React, {useState} from "react";
-import {useColors} from "../hooks/useColors.ts";
-import {useStyles} from "../hooks/useStyles.ts";
+import {useColors} from "../../hooks/useColors.ts";
+import {useStyles} from "../../hooks/useStyles.ts";
 
 interface IOptionButtonProps {
     text: string,

@@ -195,7 +195,7 @@ export const useStyles = (colors: IColors) =>
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal: 10,
-            paddingVertical: 14,
+            paddingVertical: 8,
             borderRadius: 100
         },
 
@@ -203,7 +203,7 @@ export const useStyles = (colors: IColors) =>
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal: 10,
-            paddingVertical: 14,
+            paddingVertical: 8,
             borderRadius: 100,
             borderWidth: 1,
             borderStyle: 'solid',

@@ -2,7 +2,7 @@ import {observer} from "mobx-react";
 import React from "react";
 import {Alert} from "react-native";
 import {CuisineScreenProps} from "../../utils/navigation/navigationTypes.ts";
-import {Preferences} from "../../components/Preferences.tsx";
+import {Preferences} from "../../components/preferences/Preferences.tsx";
 
 let cuisines = ['European', 'African', 'Asian', 'Middle-Eastern', 'Latin America'];
 

@@ -4,7 +4,7 @@ import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import {Alert, SafeAreaView} from "react-native";
 import {CuisineScreenProps, DietScreenProps} from "../../utils/navigation/navigationTypes.ts";
-import {Preferences} from "../../components/Preferences.tsx";
+import {Preferences} from "../../components/preferences/Preferences.tsx";
 
 let diets = ['None', 'Vegan', 'Lactose Intolerance', 'Soy Allergy', 'Pescatarian', 'Gluten-Free', 'Shellfish Allergy', 'Vegetarian', 'Kosher'];
 

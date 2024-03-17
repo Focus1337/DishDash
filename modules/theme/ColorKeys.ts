@@ -10,6 +10,7 @@ export enum ColorsKeys {
     text600 = "text600",
     text500 = "text500",
     text400 = "text400",
+    text300 = "text300",
     text200 = "text200",
     outline = "outline"
 }

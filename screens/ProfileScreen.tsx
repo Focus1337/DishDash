@@ -1,20 +1,31 @@
 import {observer} from "mobx-react";
-import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Animated, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {ProfileScreenProps} from "../utils/navigation/navigationTypes.ts";
 import React from "react";
 import {useColors} from "../hooks/useColors.ts";
 import {useStyles} from "../hooks/useStyles.ts";
 import Icon from "react-native-vector-icons/FontAwesome";
+import {UserAvatar} from "../components/UserAvatar.tsx";
+import {OutlinedMainButton} from "../components/buttons.tsx";
+import {RecipeCard} from "../components/recipes/RecipeCard.tsx";
+import FlatList = Animated.FlatList;
+import {Recipe} from "../modules/recipes/Recipe.ts";
 
 export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
+
+    const recipes: Recipe[] = [new Recipe("1", "123", "321", "456")];
 
     const handleSettings = () => {
 
     };
 
     const handleViewAll = () => {
+
+    };
+
+    const handleOnEdit = () => {
 
     };
 
@@ -26,9 +37,14 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
                     <Icon.Button name="gear" onPress={handleSettings} size={24} color={Colors.primaryCTA}
                                  backgroundColor={'white'}/>
                 </View>
-
-                <View>
-
+                <View style={localStyles.profileInfo}>
+                    <UserAvatar/>
+                    <View style={localStyles.profileEdit}>
+                        <Text style={styles.textHeader6S}>User Name</Text>
+                        <Text
+                            style={[styles.textBody12M, {color: Colors.text300}, {marginBottom: 10}]}>adievadel@gmai.com</Text>
+                        <OutlinedMainButton onPress={handleOnEdit} title={'Edit Profile'}/>
+                    </View>
                 </View>
             </View>
 
@@ -40,28 +56,31 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
                     </TouchableOpacity>
                 </View>
 
-                <ScrollView horizontal={true} style={{borderWidth: 1, borderColor: 'yellow'}}>
+                <FlatList style={{borderWidth: 1, borderColor: 'yellow'}} horizontal={true}
+                          data={recipes}
+                          keyExtractor={(_, index) => index.toString()}
+                          renderItem={({item, index}) =>
+                              <RecipeCard/>}
+                />
+            </View>
 
-                </ScrollView>
+            <View style={{flex: 2}}>
             </View>
         </SafeAreaView>
     );
 })
 
-
 let localStyles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 20,
         backgroundColor: 'white'
     },
 
     profileContainer: {
         flex: 1,
         flexDirection: 'column',
-        padding: 20,
-        gap: 20,
-        borderWidth: 1,
-        borderColor: 'red'
+        gap: 20
     },
 
     profileHeader: {
@@ -71,13 +90,22 @@ let localStyles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
+    profileInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignContent: 'center',
+    },
+
+    profileEdit: {
+        paddingLeft: 20,
+        gap: 6,
+        flexDirection: 'column'
+    },
+
     recipesContainer: {
-        flex: 3,
+        flex: 1,
         flexDirection: 'column',
-        padding: 20,
-        gap: 20,
-        borderWidth: 1,
-        borderColor: 'blue'
+        gap: 20
     },
 
     recipesHeader: {

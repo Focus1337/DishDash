@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from "react-native";
 import React from "react";
-import {useColors} from "../hooks/useColors.ts";
-import {useStyles} from "../hooks/useStyles.ts";
+import {useColors} from "../../hooks/useColors.ts";
+import {useStyles} from "../../hooks/useStyles.ts";
 
 interface IPageNumberProps {
     pageNumber: number,
