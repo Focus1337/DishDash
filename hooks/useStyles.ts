@@ -147,6 +147,14 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
+        textBody13S: {
+            fontFamily: 'Cabin-SemiBold',
+            fontStyle: 'normal',
+            fontSize: 13,
+            lineHeight: 17,
+            color: 'white'
+        },
+
         textBody12M: {
             fontFamily: 'Montserrat-Medium',
             fontStyle: 'normal',
@@ -157,6 +165,14 @@ export const useStyles = (colors: IColors) =>
 
         textBody10: {
             fontFamily: 'Montserrat-Regular',
+            fontStyle: 'normal',
+            fontSize: 10,
+            lineHeight: 15,
+            color: colors.text600
+        },
+
+        textBody10M: {
+            fontFamily: 'Montserrat-Medium',
             fontStyle: 'normal',
             fontSize: 10,
             lineHeight: 15,

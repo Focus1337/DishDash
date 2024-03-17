@@ -1,5 +1,5 @@
 import {observer} from "mobx-react";
-import {Animated, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Animated, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {ProfileScreenProps} from "../utils/navigation/navigationTypes.ts";
 import React from "react";
 import {useColors} from "../hooks/useColors.ts";
@@ -15,7 +15,12 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
-    const recipes: Recipe[] = [new Recipe("1", "123", "321", "456")];
+    const recipes: Recipe[] = [
+        new Recipe("1", "Chicken", "Andrew Tate", "Japan", 4.9),
+        new Recipe("1", "Chicken Teriyaki 2222", "Andrew Tate 123", "Japan", 4.9),
+        new Recipe("2", "Spaghetti", "Aboba", "Italy", 5),
+        new Recipe("2", "Spaghetti", "Aboba", "Italy", 5),
+    ];
 
     const handleSettings = () => {
 
@@ -56,11 +61,10 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
                     </TouchableOpacity>
                 </View>
 
-                <FlatList style={{borderWidth: 1, borderColor: 'yellow'}} horizontal={true}
-                          data={recipes}
+                <FlatList contentContainerStyle={{gap: 20}} horizontal={true}
+                          showsHorizontalScrollIndicator={false} data={recipes}
                           keyExtractor={(_, index) => index.toString()}
-                          renderItem={({item, index}) =>
-                              <RecipeCard/>}
+                          renderItem={({item}) => <RecipeCard recipe={item}/>}
                 />
             </View>
 
