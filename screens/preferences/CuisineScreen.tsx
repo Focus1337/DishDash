@@ -10,6 +10,7 @@ export const CuisineScreen = observer(({navigation}: CuisineScreenProps) => {
     const handlePrevious = () => navigation.navigate("Diet");
     const handleNextStep = () => {
         Alert.alert("Finish");
+        navigation.navigate("Tab");
     };
     const handleSkip = () => {
         Alert.alert("Skipped", "skip");

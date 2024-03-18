@@ -75,6 +75,14 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
+        textBody24S: {
+            fontFamily: 'Cabin-SemiBold',
+            fontStyle: 'normal',
+            fontSize: 24,
+            lineHeight: 36,
+            color: colors.text600
+        },
+
         textBody30: {
             fontFamily: 'Cabin-Bold',
             fontStyle: 'normal',

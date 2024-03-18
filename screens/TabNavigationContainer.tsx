@@ -20,7 +20,8 @@ export const TabNavigationContainer = () => {
                 fontFamily: 'Montserrat-Medium',
                 fontSize: 12,
                 lineHeight: 18
-            }
+            },
+            tabBarHideOnKeyboard: true
         };
     };
 
@@ -33,8 +34,7 @@ export const TabNavigationContainer = () => {
                             tabBarLabel: "Recipes"
                         }}/>
             <Tab.Screen name={"Explore"} component={ExploreScreen} options={{
-                tabBarIcon: ({color}) => <FontAwesome name={"search"} color={color} size={40}/>,
-                tabBarLabelStyle: {display: 'none'}
+                tabBarIcon: ({color}) => <FontAwesome name={"search"} color={color} size={24}/>
             }}/>
             <Tab.Screen name={"Profile"} component={ProfileScreen} options={{
                 tabBarIcon: ({color, size}) => <FontAwesome name={"user"} color={color} size={24}/>,

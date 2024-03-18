@@ -1,5 +1,5 @@
 import {observer} from "mobx-react";
-import {Animated, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {ProfileScreenProps} from "../utils/navigation/navigationTypes.ts";
 import React from "react";
 import {useColors} from "../hooks/useColors.ts";
@@ -7,9 +7,9 @@ import {useStyles} from "../hooks/useStyles.ts";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {UserAvatar} from "../components/UserAvatar.tsx";
 import {OutlinedMainButton} from "../components/buttons.tsx";
-import {RecipeCard} from "../components/recipes/RecipeCard.tsx";
-import FlatList = Animated.FlatList;
 import {Recipe} from "../modules/recipes/Recipe.ts";
+import {RecipeScroll} from "../components/recipes/RecipeScroll.tsx";
+import Navigation from "../utils/navigation/Navigation.ts";
 
 export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
     const {Colors} = useColors();
@@ -17,13 +17,13 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
 
     const recipes: Recipe[] = [
         new Recipe("1", "Chicken", "Andrew Tate", "Japan", 4.9),
-        new Recipe("1", "Chicken Teriyaki 2222", "Andrew Tate 123", "Japan", 4.9),
+        new Recipe("1", "Chicken Teriyaki 123234", "Andrew 123", "Japan", 4.9),
         new Recipe("2", "Spaghetti", "Aboba", "Italy", 5),
         new Recipe("2", "Spaghetti", "Aboba", "Italy", 5),
     ];
 
     const handleSettings = () => {
-
+       Navigation.navigate("Welcome");
     };
 
     const handleViewAll = () => {
@@ -52,27 +52,13 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
                     </View>
                 </View>
             </View>
-
-            <View style={localStyles.recipesContainer}>
-                <View style={localStyles.recipesHeader}>
-                    <Text style={styles.textHeader6S}>Saved Recipes</Text>
-                    <TouchableOpacity onPress={handleViewAll}>
-                        <Text style={[styles.textBody14M, {color: Colors.primaryAccent}]}>View All</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <FlatList contentContainerStyle={{gap: 20}} horizontal={true}
-                          showsHorizontalScrollIndicator={false} data={recipes}
-                          keyExtractor={(_, index) => index.toString()}
-                          renderItem={({item}) => <RecipeCard recipe={item}/>}
-                />
-            </View>
-
+            <RecipeScroll title={"Saved Recipes"} data={recipes} onViewAll={handleViewAll}/>
             <View style={{flex: 2}}>
             </View>
         </SafeAreaView>
     );
 })
+
 
 let localStyles = StyleSheet.create({
     container: {
@@ -104,18 +90,5 @@ let localStyles = StyleSheet.create({
         paddingLeft: 20,
         gap: 6,
         flexDirection: 'column'
-    },
-
-    recipesContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        gap: 20
-    },
-
-    recipesHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'space-between'
     }
 });

@@ -24,18 +24,21 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
             <ImageBackground source={require('../../assets/images/receipt_image.jpg')} resizeMode={'cover'}
                              borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
-                    <View
-                        style={[localStyles.like, {backgroundColor: Colors.alert}]}>
+                    <View style={[localStyles.like, {backgroundColor: Colors.alert}]}>
                         <Icon.Button name="heart" onPress={handleLike} size={16} color={Colors.backgroundPrimary}
-                                     backgroundColor={'transparent'}/>
+                                     backgroundColor={'transparent'} style={{textAlign: 'center'}}
+                                     iconStyle={{textAlign: 'center'}}/>
                     </View>
 
-                    <View style={{flexDirection: 'row', gap: 10}}>
-                        <View>
+                    <View style={{flexDirection: 'row', gap: 10, justifyContent: "space-between"}}>
+                        <View style={{maxWidth: 100}}>
                             <Text
                                 style={[styles.textBody10, {color: Colors.text200}]}>{recipe.country}</Text>
-                            <Text style={[styles.textBody13S]}>{recipe.title}</Text>
-                            <Text style={[styles.textBody10, {color: Colors.text200}]}>By {recipe.author}</Text>
+                            <Text numberOfLines={1} ellipsizeMode="tail"
+                                  style={[styles.textBody13S]}>{recipe.title}</Text>
+                            <Text
+                                numberOfLines={1} ellipsizeMode="tail"
+                                style={[styles.textBody10, {color: Colors.text200}]}>By {recipe.author}</Text>
                         </View>
 
                         <View style={{flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end'}}>
