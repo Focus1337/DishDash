@@ -24,11 +24,9 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
             <ImageBackground source={require('../../assets/images/receipt_image.jpg')} resizeMode={'cover'}
                              borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
-                    <View style={[localStyles.like, {backgroundColor: Colors.alert}]}>
-                        <Icon.Button name="heart" onPress={handleLike} size={16} color={Colors.backgroundPrimary}
-                                     backgroundColor={'transparent'} style={{textAlign: 'center'}}
-                                     iconStyle={{textAlign: 'center'}}/>
-                    </View>
+                    <TouchableOpacity style={[localStyles.like, {backgroundColor: Colors.alert}]} onPress={handleLike}>
+                        <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={16}/>
+                    </TouchableOpacity>
 
                     <View style={{flexDirection: 'row', gap: 10, justifyContent: "space-between"}}>
                         <View style={{maxWidth: 100}}>
@@ -65,6 +63,7 @@ let localStyles = StyleSheet.create({
 
     like: {
         alignSelf: 'flex-end',
+        padding: 6,
         borderRadius: 10
     },
 

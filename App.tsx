@@ -10,18 +10,21 @@ import {AllergyScreen} from "./screens/preferences/AllergyScreen.tsx";
 import {DietScreen} from "./screens/preferences/DietScreen.tsx";
 import {CuisineScreen} from "./screens/preferences/CuisineScreen.tsx";
 import {TabNavigationContainer} from "./screens/TabNavigationContainer.tsx";
+import {RecipeDetailsScreen} from "./screens/recipe/RecipeDetailsScreen.tsx";
 
 const Stack = createNativeStackNavigator<NativeStackParamList>();
 export default function App() {
 
     return (
         <NavigationContainer ref={Navigation.navigationRef}>
-            <Stack.Navigator initialRouteName={'Tab'} screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
+            <Stack.Navigator initialRouteName={'RecipeDetails'}
+                             screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
                 <Stack.Screen name={'Tab'} component={TabNavigationContainer} options={{headerShown: false}}/>
                 <Stack.Screen name={'Welcome'} component={WelcomeScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Allergy'} component={AllergyScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Diet'} component={DietScreen} options={{headerShown: false}}/>
                 <Stack.Screen name={'Cuisine'} component={CuisineScreen} options={{headerShown: false}}/>
+                <Stack.Screen name={'RecipeDetails'} component={RecipeDetailsScreen} options={{headerShown: false}}/>
             </Stack.Navigator>
             <ThemedStatusBar/>
         </NavigationContainer>

@@ -131,6 +131,14 @@ export const useStyles = (colors: IColors) =>
             color: colors.text600
         },
 
+        textBody15M: {
+            fontFamily: 'Montserrat-Medium',
+            fontStyle: 'normal',
+            fontSize: 15,
+            lineHeight: 24,
+            color: colors.text600
+        },
+
         textBody14R: {
             fontFamily: 'Montserrat-Regular',
             fontStyle: 'normal',
