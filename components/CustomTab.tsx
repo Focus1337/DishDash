@@ -29,7 +29,7 @@ export const CustomTab = (props: CustomTabProps) => {
     }
 
     return (
-        <View>
+        <View style={{flex: 1}}>
             <View style={localStyles.container}>
                 <CustomTabButton text={"Overview"} active={activeTab === 'tab1'} onPress={() => setActiveTab('tab1')}/>
                 <CustomTabButton text={"Ingredients"} active={activeTab === 'tab2'}

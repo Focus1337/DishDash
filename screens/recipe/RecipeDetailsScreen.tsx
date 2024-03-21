@@ -4,9 +4,11 @@ import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import {
     Alert,
+    FlatList,
     Image,
     ImageBackground,
-    SafeAreaView, ScrollView,
+    SafeAreaView,
+    ScrollView,
     Share,
     StyleSheet,
     Text,
@@ -14,8 +16,10 @@ import {
     View
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Feather from "react-native-vector-icons/Feather";
 import React from "react";
 import {CustomTab} from "../../components/CustomTab.tsx";
+import {Direction} from "../../components/recipes/Direction.tsx";
 
 export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenProps) => {
     const {Colors} = useColors();
@@ -49,8 +53,8 @@ export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenPr
                                  resizeMode={'cover'}>
                     <TouchableOpacity
                         style={[localStyles.backButton, {backgroundColor: Colors.outline,}]}>
-                        <FontAwesome name={"arrow-left"} color={Colors.backgroundPrimary}
-                                     size={20}/>
+                        <Feather name={"arrow-left"} color={Colors.backgroundPrimary}
+                                 size={20}/>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -65,7 +69,7 @@ export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenPr
                     <Text style={styles.textHeader4}>Yangnyeom Chicken</Text>
                     <TouchableOpacity onPress={handleShare}
                                       style={[localStyles.backButton, {backgroundColor: "#F5F6F5"}]}>
-                        <FontAwesome name={"share-alt"} color={Colors.text600} size={26}/>
+                        <Feather name={"share-2"} color={Colors.text600} size={26}/>
                     </TouchableOpacity>
                 </View>
 
@@ -129,20 +133,50 @@ const TabIngredients = () => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
+    const ingredients = ['2 cups coconut milk',
+        '1 cup uncooked quinoa',
+        '1 (20-ounce) can pineapple chunks in natural juice, drained with juice reserved',
+        '1 (15-ounce) can diced mangos in light syrup, drained with syrup reserved',
+        '1 (15-ounce) can diced mangos in light syrup, drained with syrup reserved',
+        '1 (11-ounce) can Mandarin oranges in light syrup, drained with syrup reserved',
+        '½ cup sweetened shredded coconut, toasted'];
+
     return (
-        <ScrollView contentContainerStyle={{paddingVertical: 20, gap: 20}}>
-            <Text>2</Text>
-        </ScrollView>
+        <View style={{paddingVertical: 20, gap: 20}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={[{flexDirection: 'row', gap: 4}]}>
+                    <Text style={styles.textBody16B}>Ingredients</Text>
+                    <Text style={[styles.textBody16S, {color: Colors.alert}]}>(12)</Text>
+                </View>
+
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                    <Text style={[styles.textBody12M, {color: Colors.text300}]}>4</Text>
+                    <Text style={[styles.textBody12M, {color: Colors.text300, marginRight: 4}]}>servings</Text>
+                    <Feather name={"minus-circle"} color={Colors.text600} size={16} style={{marginRight: 4}}/>
+                    <Feather name={"plus-circle"} color={Colors.text600} size={16}/>
+                </View>
+            </View>
+
+            <FlatList data={ingredients} contentContainerStyle={{paddingRight: 50}}
+                      keyExtractor={(_, index) => index.toString()}
+                      renderItem={({item}) => <Text style={[styles.textBody14M, {marginBottom: 10}]}>{item}</Text>}
+            />
+
+        </View>
     )
 };
 
 const TabDirections = () => {
-    const {Colors} = useColors();
-    const styles = useStyles(Colors);
+    const directions = [
+        'Heat 2 inches of oil in a large heavy frying pan over medium hight heat for about 10 to 12 minutes until the oil temperature reaches 330-350º. Combine all the ingredients and mix altogether.',
+        'Add the coated chicken to hot oil one by one. Fry them for 12 minutes until the all sides of the chicken are golden brown and crunchy, turning over with tongs.'
+    ];
 
     return (
         <ScrollView contentContainerStyle={{paddingVertical: 20, gap: 20}}>
-            <Text>3</Text>
+            {
+                directions.map((d, id) => <Direction key={d} text={d} step={id}/>)
+            }
         </ScrollView>
     )
 };
