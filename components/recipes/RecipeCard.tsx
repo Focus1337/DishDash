@@ -5,7 +5,7 @@ import {useStyles} from "../../hooks/useStyles.ts";
 import Icon from "react-native-vector-icons/FontAwesome";
 import GradientBackground from "../GradientBackground.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import {Recipe} from "../../modules/recipes/Recipe.ts";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
 interface RecipeCardProps {
     recipe: Recipe;

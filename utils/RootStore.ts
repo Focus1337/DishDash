@@ -1,15 +1,12 @@
 import React from "react";
+import {RecipesStore} from "../modules/recipes/RecipesStore.ts";
 
 class RootStore {
-    // todoViewModel: TodoStore;
-    // logsStore: LogStore;
-    // langStore: LangStore;
-    //
-    // constructor() {
-    //     this.todoViewModel = new TodoStore();
-    //     this.logsStore = new LogStore();
-    //     this.langStore = new LangStore();
-    // }
+    recipesStore: RecipesStore;
+
+    constructor() {
+        this.recipesStore = new RecipesStore();
+    }
 }
 
 export const rootStore = new RootStore();

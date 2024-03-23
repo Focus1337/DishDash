@@ -3,7 +3,7 @@ import {useStyles} from "../../hooks/useStyles.ts";
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {RecipeCard} from "./RecipeCard.tsx";
 import React from "react";
-import {Recipe} from "../../modules/recipes/Recipe.ts";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
 interface RecipeScrollProps {
     title: string;

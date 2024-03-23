@@ -7,7 +7,7 @@ import {useStyles} from "../hooks/useStyles.ts";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {UserAvatar} from "../components/UserAvatar.tsx";
 import {OutlinedMainButton} from "../components/buttons.tsx";
-import {Recipe} from "../modules/recipes/Recipe.ts";
+import {Recipe} from "../modules/recipes/models/Recipe.ts";
 import {RecipeScroll} from "../components/recipes/RecipeScroll.tsx";
 import Navigation from "../utils/navigation/Navigation.ts";
 

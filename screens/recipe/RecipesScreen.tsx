@@ -5,7 +5,7 @@ import {WeeklyPick} from "../../components/recipes/WeeklyPick.tsx";
 import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import {RecipeScroll} from "../../components/recipes/RecipeScroll.tsx";
-import {Recipe} from "../../modules/recipes/Recipe.ts";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
 export const RecipesScreen = observer(({navigation}: RecipesScreenProps) => {
     const {Colors} = useColors();
