@@ -4,5 +4,6 @@ interface Ingredient {
     measure: string;
     food: string;
     weight: number;
-    foodId: string;
+    foodCategory: string,
+    image: string;
 }

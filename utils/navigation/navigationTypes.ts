@@ -20,10 +20,10 @@ export type RecipeDetailsScreenProps = NativeStackScreenProps<NativeStackParamLi
 
 export type TabParamList = {
     Explore: undefined,
-    RecipesScreen: undefined,
+    Home: undefined,
     Profile: undefined
 };
 
 export type ExploreScreenProps = NativeStackScreenProps<TabParamList, 'Explore'>;
-export type RecipesScreenProps = NativeStackScreenProps<TabParamList, 'RecipesScreen'>;
+export type HomeScreenProps = NativeStackScreenProps<TabParamList, 'Home'>;
 export type ProfileScreenProps = NativeStackScreenProps<TabParamList, 'Profile'>;

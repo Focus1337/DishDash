@@ -11,20 +11,22 @@ import {DietScreen} from "./screens/preferences/DietScreen.tsx";
 import {CuisineScreen} from "./screens/preferences/CuisineScreen.tsx";
 import {TabNavigationContainer} from "./screens/TabNavigationContainer.tsx";
 import {RecipeDetailsScreen} from "./screens/recipe/RecipeDetailsScreen.tsx";
+import {SearchResultScreen} from "./screens/recipe/SearchResultScreen.tsx";
 
 const Stack = createNativeStackNavigator<NativeStackParamList>();
 export default function App() {
 
     return (
         <NavigationContainer ref={Navigation.navigationRef}>
-            <Stack.Navigator initialRouteName={'RecipeDetails'}
-                             screenOptions={{contentStyle: {backgroundColor: 'white'}}}>
-                <Stack.Screen name={'Tab'} component={TabNavigationContainer} options={{headerShown: false}}/>
-                <Stack.Screen name={'Welcome'} component={WelcomeScreen} options={{headerShown: false}}/>
-                <Stack.Screen name={'Allergy'} component={AllergyScreen} options={{headerShown: false}}/>
-                <Stack.Screen name={'Diet'} component={DietScreen} options={{headerShown: false}}/>
-                <Stack.Screen name={'Cuisine'} component={CuisineScreen} options={{headerShown: false}}/>
-                <Stack.Screen name={'RecipeDetails'} component={RecipeDetailsScreen} options={{headerShown: false}}/>
+            <Stack.Navigator initialRouteName={'SearchResult'}
+                             screenOptions={{contentStyle: {backgroundColor: 'white'}, headerShown: false}}>
+                <Stack.Screen name={'Tab'} component={TabNavigationContainer}/>
+                <Stack.Screen name={'Welcome'} component={WelcomeScreen}/>
+                <Stack.Screen name={'Allergy'} component={AllergyScreen}/>
+                <Stack.Screen name={'Diet'} component={DietScreen}/>
+                <Stack.Screen name={'Cuisine'} component={CuisineScreen}/>
+                <Stack.Screen name={'RecipeDetails'} component={RecipeDetailsScreen}/>
+                <Stack.Screen name={'SearchResult'} component={SearchResultScreen}/>
             </Stack.Navigator>
             <ThemedStatusBar/>
         </NavigationContainer>

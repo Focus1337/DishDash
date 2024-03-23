@@ -21,8 +21,8 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
 
     return (
         <TouchableOpacity style={[localStyles.container]}>
-            <ImageBackground source={require('../../assets/images/receipt_image.jpg')} resizeMode={'cover'}
-                             borderRadius={10} style={{flex: 1}}>
+            <ImageBackground source={{uri: recipe.image} ?? require('../../assets/images/receipt_image.jpg')}
+                             resizeMode={'cover'} borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
                     <TouchableOpacity style={[localStyles.like, {backgroundColor: Colors.alert}]} onPress={handleLike}>
                         <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={16}/>
@@ -31,18 +31,18 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
                     <View style={{flexDirection: 'row', gap: 10, justifyContent: "space-between"}}>
                         <View style={{maxWidth: 100}}>
                             <Text
-                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe.country}</Text>
+                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe.calories} kcal</Text>
                             <Text numberOfLines={1} ellipsizeMode="tail"
-                                  style={[styles.textBody13S]}>{recipe.title}</Text>
+                                  style={[styles.textBody13S]}>{recipe.label}</Text>
                             <Text
                                 numberOfLines={1} ellipsizeMode="tail"
-                                style={[styles.textBody10, {color: Colors.text200}]}>By {recipe.author}</Text>
+                                style={[styles.textBody10, {color: Colors.text200}]}>By {recipe.source}</Text>
                         </View>
 
                         <View style={{flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end'}}>
                             <FontAwesome name={"star"} color={Colors.secondary} size={12}/>
                             <Text
-                                style={[{marginLeft: 4}, styles.textBody10M, {color: Colors.secondary}]}>{recipe.rating}</Text>
+                                style={[{marginLeft: 4}, styles.textBody10M, {color: Colors.secondary}]}>5</Text>
                         </View>
                     </View>
                 </GradientBackground>
@@ -50,7 +50,6 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
         </TouchableOpacity>
     );
 };
-
 
 let localStyles = StyleSheet.create({
     container: {

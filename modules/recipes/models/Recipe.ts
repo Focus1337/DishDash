@@ -8,7 +8,7 @@ export interface Recipe {
     uri: string;
     label: string;
     image: string;
-    images: ImageInfo;
+    images?: ImageInfo;
     source: string;
     url: string;
     shareAs: string;
@@ -19,15 +19,16 @@ export interface Recipe {
     ingredientLines: string[];
     ingredients: Ingredient[];
     calories: number;
-    glycemicIndex: number;
-    inflammatoryIndex: number;
-    totalCO2Emissions: number;
-    co2EmissionsClass: string;
+    glycemicIndex?: number;
+    inflammatoryIndex?: number;
+    totalCO2Emissions?: number;
+    co2EmissionsClass?: string;
     totalWeight: number;
+    totalTime: number;
     cuisineType: CuisineType[];
     mealType: MealType[];
     dishType: DishType[];
-    totalNutrients: NutrientsInfo;
-    totalDaily: NutrientsInfo;
+    totalNutrients?: NutrientsInfo;
+    totalDaily?: NutrientsInfo;
     digest: DigestEntry[];
 }
