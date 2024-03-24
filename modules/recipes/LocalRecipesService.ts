@@ -56,15 +56,11 @@ export default class LocalRecipesService {
         return recipes;
     };
 
-    setRecent = async (recipe: Recipe) => {
-        return await this.recentRepository.set(JSON.stringify(recipe));
+    setRecent = async (recipes: Recipe[]) => {
+        return await this.recentRepository.set(JSON.stringify(recipes));
     }
 
-    setSaved = async (recipe: Recipe) => {
-        return await this.savedRepository.set(JSON.stringify(recipe));
-    };
-
-    setSavedList = async (recipes: Recipe[]) => {
+    setSaved = async (recipes: Recipe[]) => {
         return await this.savedRepository.set(JSON.stringify(recipes));
     };
 
@@ -72,10 +68,13 @@ export default class LocalRecipesService {
         let res = await this.getSaved();
 
         let updated = res?.filter(x => x.uri != recipe.uri);
-        await this.setSavedList(updated ?? []);
+        await this.setSaved(updated ?? []);
     };
 
-    removeAllRecent = async () => {
-        await this.recentRepository.removeAll();
+    removeRecent = async (recipe: Recipe) => {
+        let res = await this.getRecent();
+
+        let updated = res?.filter(x => x.uri != recipe.uri);
+        await this.setRecent(updated ?? []);
     };
 }

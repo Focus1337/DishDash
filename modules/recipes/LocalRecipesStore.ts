@@ -20,6 +20,7 @@ export class LocalRecipesStore {
 
     actionHandleGetRecent = async () => {
         let prev = await this.service.getRecent();
+        console.log(prev);
 
         this.setRecent(prev);
     };
@@ -28,7 +29,7 @@ export class LocalRecipesStore {
         const prev = await this.service.getSaved() || [];
         const newItemsSet = new Set([...prev, item]);
 
-        await this.service.setSavedList([...newItemsSet]);
+        await this.service.setSaved([...newItemsSet]);
         await this.actionHandleGetSaved();
     };
 
@@ -37,9 +38,17 @@ export class LocalRecipesStore {
         await this.actionHandleGetSaved();
     };
 
-    actionHandleRemoveAllRecent = async () => {
-        await this.service.removeAllRecent();
-        await this.actionHandleGetRecent();
+    actionHandleAddRecent = async (recipe: Recipe) => {
+        let prev = await this.service.getRecent() || [];
+
+        if (!prev.some(r => r.uri === recipe.uri)) {
+            await this.service.setRecent([...prev, recipe]);
+        } else {
+            await this.service.removeRecent(recipe);
+            await this.service.setRecent([...prev, recipe]);
+        }
+
+        await this.actionHandleGetSaved();
     };
 
     private setSaved(value: Recipe[] | null) {

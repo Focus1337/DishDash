@@ -20,8 +20,9 @@ export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
 
     return (
         <TouchableOpacity style={[localStyles.container]} onPress={onPress}>
-            <ImageBackground source={{uri: recipe.image} ?? require('../../assets/images/receipt_image.jpg')}
-                             resizeMode={'cover'} borderRadius={10} style={{flex: 1}}>
+            <ImageBackground
+                source={{uri: recipe?.image || "https://t3.ftcdn.net/jpg/05/14/75/82/360_F_514758236_i8rnB85PVdEaK19yGaK0TpaYEYMyxOL5.jpg"} ?? require('../../assets/images/receipt_image.jpg')}
+                resizeMode={'cover'} borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
                     <TouchableOpacity style={[localStyles.like, {backgroundColor: Colors.alert}]} onPress={handleSave}>
                         <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={16}/>
@@ -30,12 +31,12 @@ export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
                     <View style={{flexDirection: 'row', gap: 10, justifyContent: "space-between"}}>
                         <View style={{maxWidth: 100}}>
                             <Text
-                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe.calories.toFixed()} kcal</Text>
+                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe?.calories.toFixed()} kcal</Text>
                             <Text numberOfLines={1} ellipsizeMode="tail"
-                                  style={[styles.textBody13S]}>{recipe.label}</Text>
+                                  style={[styles.textBody13S]}>{recipe?.label}</Text>
                             <Text
                                 numberOfLines={1} ellipsizeMode="tail"
-                                style={[styles.textBody10, {color: Colors.text200}]}>By {recipe.source}</Text>
+                                style={[styles.textBody10, {color: Colors.text200}]}>By {recipe?.source}</Text>
                         </View>
 
                         <View style={{flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end'}}>

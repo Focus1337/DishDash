@@ -34,6 +34,20 @@ export const RecipeDetailsScreen = observer(({navigation, route}: RecipeDetailsS
         setRecipe(route.params.recipe);
     }, []);
 
+    useEffect(() => {
+        (async () => {
+            await localRecipesStore.actionHandleGetRecent();
+        })();
+    }, []);
+
+    useEffect(() => {
+        if (recipe) {
+            (async () => {
+                await localRecipesStore.actionHandleAddRecent(recipe);
+            })();
+        }
+    }, [recipe, localRecipesStore]);
+
     const handleShare = async () => {
         try {
             const result = await Share.share({
