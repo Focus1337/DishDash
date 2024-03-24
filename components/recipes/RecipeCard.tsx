@@ -9,9 +9,10 @@ import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
 interface RecipeCardProps {
     recipe: Recipe;
+    onPress: () => void;
 }
 
-export const RecipeCard = ({recipe}: RecipeCardProps) => {
+export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
@@ -20,7 +21,7 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
     };
 
     return (
-        <TouchableOpacity style={[localStyles.container]}>
+        <TouchableOpacity style={[localStyles.container]} onPress={onPress}>
             <ImageBackground source={{uri: recipe.image} ?? require('../../assets/images/receipt_image.jpg')}
                              resizeMode={'cover'} borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
@@ -31,7 +32,7 @@ export const RecipeCard = ({recipe}: RecipeCardProps) => {
                     <View style={{flexDirection: 'row', gap: 10, justifyContent: "space-between"}}>
                         <View style={{maxWidth: 100}}>
                             <Text
-                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe.calories} kcal</Text>
+                                style={[styles.textBody10, {color: Colors.text200}]}>{recipe.calories.toFixed()} kcal</Text>
                             <Text numberOfLines={1} ellipsizeMode="tail"
                                   style={[styles.textBody13S]}>{recipe.label}</Text>
                             <Text

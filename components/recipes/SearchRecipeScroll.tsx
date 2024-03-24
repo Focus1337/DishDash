@@ -4,6 +4,7 @@ import {useStyles} from "../../hooks/useStyles.ts";
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {RecipeCard} from "./RecipeCard.tsx";
 import React from "react";
+import Navigation from "../../utils/navigation/Navigation.ts";
 
 interface SearchRecipeScrollProps {
     data: Recipe[];
@@ -18,7 +19,9 @@ export const SearchRecipeScroll = (props: SearchRecipeScrollProps) => {
             <FlatList contentContainerStyle={{gap: 20, alignItems: 'center'}} numColumns={2}
                       columnWrapperStyle={{gap: 20}} showsHorizontalScrollIndicator={false} data={props.data}
                       keyExtractor={(_, index) => index.toString()}
-                      renderItem={({item}) => <RecipeCard recipe={item}/>}
+                      renderItem={({item}) => <RecipeCard recipe={item} onPress={() => {
+                          Navigation.navigate("RecipeDetails", {recipe: item})
+                      }}/>}
             />
         </View>
     );

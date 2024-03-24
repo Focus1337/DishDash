@@ -17,19 +17,25 @@ import {
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {CustomTab} from "../../components/CustomTab.tsx";
 import {Direction} from "../../components/recipes/Direction.tsx";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
-export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenProps) => {
+export const RecipeDetailsScreen = observer(({navigation, route}: RecipeDetailsScreenProps) => {
+    const [recipe, setRecipe] = useState<Recipe>();
     const {Colors} = useColors();
     const styles = useStyles(Colors);
+
+    useEffect(() => {
+        setRecipe(route.params.recipe);
+    }, []);
 
     const handleShare = async () => {
         try {
             const result = await Share.share({
                 message:
-                    'Checkout this recipe!',
+                    'Checkout this recipe! ' + recipe?.shareAs,
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -48,25 +54,23 @@ export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenPr
     return (
         <SafeAreaView style={localStyles.container}>
             <View style={localStyles.image}>
-                <ImageBackground source={require('../../assets/images/recipe_details.png')}
+                <ImageBackground source={{uri: recipe?.image!} ?? require('../../assets/images/recipe_details.png')}
                                  style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 20}}
                                  resizeMode={'cover'}>
-                    <TouchableOpacity
-                        style={[localStyles.backButton, {backgroundColor: Colors.outline,}]}>
-                        <Feather name={"arrow-left"} color={Colors.backgroundPrimary}
-                                 size={20}/>
+                    <TouchableOpacity onPress={() => navigation.goBack()}
+                                      style={[localStyles.backButton, {backgroundColor: Colors.outline,}]}>
+                        <Feather name={"arrow-left"} color={Colors.backgroundPrimary} size={20}/>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={[localStyles.backButton, {backgroundColor: Colors.outline}]}>
-                        <FontAwesome name={"heart"} color={Colors.backgroundPrimary}
-                                     size={20}/>
+                        <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={20}/>
                     </TouchableOpacity>
                 </ImageBackground>
             </View>
             <View style={localStyles.main}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={styles.textHeader4}>Yangnyeom Chicken</Text>
+                    <Text style={styles.textHeader4}>{recipe?.label}</Text>
                     <TouchableOpacity onPress={handleShare}
                                       style={[localStyles.backButton, {backgroundColor: "#F5F6F5"}]}>
                         <Feather name={"share-2"} color={Colors.text600} size={26}/>
@@ -76,19 +80,26 @@ export const RecipeDetailsScreen = observer(({navigation}: RecipeDetailsScreenPr
                 <View style={[localStyles.authorContainer, {borderColor: Colors.outline}]}>
                     <Image source={require('../../assets/images/person.jpg')} style={localStyles.authorImage}/>
                     <View style={{flexDirection: 'column'}}>
-                        <Text style={styles.textBody16M}>Andrew Jun</Text>
-                        <Text style={[styles.textBody14M, {color: Colors.text300}]}>@andrewjun</Text>
+                        <Text style={styles.textBody16M}>{recipe?.source}</Text>
+                        <Text style={[styles.textBody14M, {color: Colors.text300}]}>{recipe?.source}</Text>
                     </View>
                 </View>
 
-                <CustomTab tab1Content={<TabOverview/>} tab2Content={<TabIngredients/>} tab3Content={<TabDirections/>}/>
+                <CustomTab tab1Content={<TabOverview recipe={recipe}/>}
+                           tab2Content={<TabIngredients recipe={recipe}/>}
+                           tab3Content={<TabDirections recipe={recipe}/>}
+                />
 
             </View>
         </SafeAreaView>
     );
 })
 
-const TabOverview = () => {
+interface TabContentProps {
+    recipe: Recipe | undefined;
+}
+
+const TabOverview = ({recipe}: TabContentProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
@@ -104,7 +115,7 @@ const TabOverview = () => {
                 <View style={localStyles.miniInfo}>
                     <View style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
                         <FontAwesome name={"clock-o"} color={Colors.alert} size={16}/>
-                        <Text style={[styles.textBody14M, {color: Colors.alert}]}>12 mins</Text>
+                        <Text style={[styles.textBody14M, {color: Colors.alert}]}>{recipe?.totalTime} secs</Text>
                     </View>
                     <Text style={[styles.textBody12M, {color: Colors.text400}]}>Cook time</Text>
                 </View>
@@ -112,7 +123,7 @@ const TabOverview = () => {
                 <View style={localStyles.miniInfo}>
                     <View style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
                         <FontAwesome name={"fire"} color={Colors.alert} size={16}/>
-                        <Text style={[styles.textBody14M, {color: Colors.alert}]}>245</Text>
+                        <Text style={[styles.textBody14M, {color: Colors.alert}]}>{recipe?.calories.toFixed()}</Text>
                     </View>
                     <Text style={[styles.textBody12M, {color: Colors.text400}]}>Calories</Text>
                 </View>
@@ -129,24 +140,16 @@ const TabOverview = () => {
     );
 };
 
-const TabIngredients = () => {
+const TabIngredients = ({recipe}: TabContentProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
-
-    const ingredients = ['2 cups coconut milk',
-        '1 cup uncooked quinoa',
-        '1 (20-ounce) can pineapple chunks in natural juice, drained with juice reserved',
-        '1 (15-ounce) can diced mangos in light syrup, drained with syrup reserved',
-        '1 (15-ounce) can diced mangos in light syrup, drained with syrup reserved',
-        '1 (11-ounce) can Mandarin oranges in light syrup, drained with syrup reserved',
-        '½ cup sweetened shredded coconut, toasted'];
 
     return (
         <View style={{paddingVertical: 20, gap: 20}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={[{flexDirection: 'row', gap: 4}]}>
                     <Text style={styles.textBody16B}>Ingredients</Text>
-                    <Text style={[styles.textBody16S, {color: Colors.alert}]}>(12)</Text>
+                    <Text style={[styles.textBody16S, {color: Colors.alert}]}>({recipe?.ingredients.length})</Text>
                 </View>
 
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
@@ -157,7 +160,7 @@ const TabIngredients = () => {
                 </View>
             </View>
 
-            <FlatList data={ingredients} contentContainerStyle={{paddingRight: 50}}
+            <FlatList data={recipe?.ingredients.map(x => x.text)} contentContainerStyle={{paddingRight: 50}}
                       keyExtractor={(_, index) => index.toString()}
                       renderItem={({item}) => <Text style={[styles.textBody14M, {marginBottom: 10}]}>{item}</Text>}
             />
@@ -166,7 +169,7 @@ const TabIngredients = () => {
     )
 };
 
-const TabDirections = () => {
+const TabDirections = ({recipe}: TabContentProps) => {
     const directions = [
         'Heat 2 inches of oil in a large heavy frying pan over medium hight heat for about 10 to 12 minutes until the oil temperature reaches 330-350º. Combine all the ingredients and mix altogether.',
         'Add the coated chicken to hot oil one by one. Fry them for 12 minutes until the all sides of the chicken are golden brown and crunchy, turning over with tongs.'

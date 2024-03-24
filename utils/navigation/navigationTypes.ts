@@ -1,5 +1,6 @@
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RecipeSearchRequest} from "../../modules/recipes/models/RecipeSearchRequest.ts";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 
 export type NativeStackParamList = {
     Welcome: undefined,
@@ -7,7 +8,7 @@ export type NativeStackParamList = {
     Cuisine: undefined,
     Diet: undefined,
     SearchResult: { request: RecipeSearchRequest },
-    RecipeDetails: undefined,
+    RecipeDetails: { recipe: Recipe },
     Tab: undefined
 };
 
