@@ -2,7 +2,6 @@ import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-n
 import React from "react";
 import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
-import Icon from "react-native-vector-icons/FontAwesome";
 import GradientBackground from "../GradientBackground.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import {Recipe} from "../../modules/recipes/models/Recipe.ts";
@@ -16,8 +15,7 @@ export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
-    const handleLike = () => {
-
+    const handleSave = () => {
     };
 
     return (
@@ -25,7 +23,7 @@ export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
             <ImageBackground source={{uri: recipe.image} ?? require('../../assets/images/receipt_image.jpg')}
                              resizeMode={'cover'} borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main}>
-                    <TouchableOpacity style={[localStyles.like, {backgroundColor: Colors.alert}]} onPress={handleLike}>
+                    <TouchableOpacity style={[localStyles.like, {backgroundColor: Colors.alert}]} onPress={handleSave}>
                         <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={16}/>
                     </TouchableOpacity>
 

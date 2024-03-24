@@ -3,11 +3,11 @@ import {Recipe} from "./models/Recipe.ts";
 
 export default class LocalRecipesService {
     private readonly recentRepository: RecipesRepository;
-    private readonly likedRepository: RecipesRepository;
+    private readonly savedRepository: RecipesRepository;
 
     constructor() {
         this.recentRepository = new RecipesRepository("recent-recipes");
-        this.likedRepository = new RecipesRepository("liked-recipes");
+        this.savedRepository = new RecipesRepository("saved-recipes");
     }
 
     getRecent = async (): Promise<Recipe[] | null> => {
@@ -33,11 +33,11 @@ export default class LocalRecipesService {
         return recipes;
     };
 
-    getLiked = async (): Promise<Recipe[] | null> => {
+    getSaved = async (): Promise<Recipe[] | null> => {
         let recipes: Recipe[] = [];
 
         try {
-            let result = await this.likedRepository.get();
+            let result = await this.savedRepository.get();
 
             if (result === null) {
                 return null;
@@ -56,15 +56,23 @@ export default class LocalRecipesService {
         return recipes;
     };
 
-    saveAsRecent = async (recipe: Recipe) => {
+    setRecent = async (recipe: Recipe) => {
         return await this.recentRepository.set(JSON.stringify(recipe));
     }
 
-    saveAsLiked = async (recipe: Recipe) => {
-        return await this.likedRepository.set(JSON.stringify(recipe));
+    setSaved = async (recipe: Recipe) => {
+        return await this.savedRepository.set(JSON.stringify(recipe));
     };
 
-    removeFromLikes = async (recipe: Recipe) => {
+    setSavedList = async (recipes: Recipe[]) => {
+        return await this.savedRepository.set(JSON.stringify(recipes));
+    };
+
+    removeSaved = async (recipe: Recipe) => {
+        let res = await this.getSaved();
+
+        let updated = res?.filter(x => x.uri != recipe.uri);
+        await this.setSavedList(updated ?? []);
     };
 
     removeAllRecent = async () => {

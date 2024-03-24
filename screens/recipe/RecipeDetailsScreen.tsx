@@ -21,9 +21,12 @@ import React, {useEffect, useState} from "react";
 import {CustomTab} from "../../components/CustomTab.tsx";
 import {Direction} from "../../components/recipes/Direction.tsx";
 import {Recipe} from "../../modules/recipes/models/Recipe.ts";
+import {useRootStore} from "../../hooks/useRootStore.ts";
 
 export const RecipeDetailsScreen = observer(({navigation, route}: RecipeDetailsScreenProps) => {
+    const [saved, setSaved] = useState(false);
     const [recipe, setRecipe] = useState<Recipe>();
+    const {localRecipesStore} = useRootStore();
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
@@ -51,20 +54,48 @@ export const RecipeDetailsScreen = observer(({navigation, route}: RecipeDetailsS
         }
     };
 
+    useEffect(() => {
+        setRecipe(route.params.recipe);
+    }, [route.params.recipe]);
+
+    useEffect(() => {
+        (async () => {
+            if (recipe) {
+                await localRecipesStore.actionHandleGetSaved();
+
+                const isSaved = localRecipesStore.saved?.some(r => r.uri === recipe.uri) ?? false;
+                setSaved(isSaved);
+            }
+        })();
+    }, [localRecipesStore, recipe]);
+
+    const handleSave = async () => {
+        await localRecipesStore.actionHandleGetSaved();
+
+        if (saved) {
+            await localRecipesStore.actionHandleRemoveSaved(recipe!);
+        } else {
+            await localRecipesStore.actionHandleAddSaved(recipe!);
+        }
+
+        setSaved(!saved);
+    };
+
     return (
         <SafeAreaView style={localStyles.container}>
             <View style={localStyles.image}>
-                <ImageBackground source={{uri: recipe?.image!} ?? require('../../assets/images/recipe_details.png')}
-                                 style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 20}}
-                                 resizeMode={'cover'}>
+                <ImageBackground
+                    source={{uri: recipe?.image || "https://t3.ftcdn.net/jpg/05/14/75/82/360_F_514758236_i8rnB85PVdEaK19yGaK0TpaYEYMyxOL5.jpg"} ?? require('../../assets/images/recipe_details.png')}
+                    style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', padding: 20}}
+                    resizeMode={'cover'}>
                     <TouchableOpacity onPress={() => navigation.goBack()}
                                       style={[localStyles.backButton, {backgroundColor: Colors.outline,}]}>
                         <Feather name={"arrow-left"} color={Colors.backgroundPrimary} size={20}/>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={[localStyles.backButton, {backgroundColor: Colors.outline}]}>
-                        <FontAwesome name={"heart"} color={Colors.backgroundPrimary} size={20}/>
+                    <TouchableOpacity onPress={handleSave}
+                                      style={[localStyles.backButton, {backgroundColor: Colors.outline}]}>
+                        <FontAwesome name={"heart"} color={saved ? Colors.alert : Colors.backgroundPrimary} size={20}/>
                     </TouchableOpacity>
                 </ImageBackground>
             </View>

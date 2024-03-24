@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx";
 import {Recipe} from "./models/Recipe.ts";
 import {RecipeSearchRequest} from "./models/RecipeSearchRequest.ts";
 
-export class RecipesStore {
+export class RemoteRecipesStore {
     private service: RemoteRecipesService;
     isLoading = false;
     recipes: Recipe[] = [];

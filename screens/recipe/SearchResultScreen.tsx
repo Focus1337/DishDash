@@ -12,7 +12,7 @@ import {useRootStore} from "../../hooks/useRootStore.ts";
 
 export const SearchResultScreen = observer(({navigation, route}: SearchResultScreenProps) => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
-    const {recipesStore} = useRootStore();
+    const {remoteRecipesStore} = useRootStore();
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
@@ -24,8 +24,8 @@ export const SearchResultScreen = observer(({navigation, route}: SearchResultScr
         let req = route.params.request;
         req.q = query;
 
-        await recipesStore.actionHandleSearch(req);
-        setRecipes(recipesStore.recipes);
+        await remoteRecipesStore.actionHandleSearch(req);
+        setRecipes(remoteRecipesStore.recipes);
     };
 
     return (
