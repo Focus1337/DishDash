@@ -21,3 +21,9 @@ export enum CuisineType {
     SouthEastAsian = 'south east asian',
     World = 'world'
 }
+
+export const cuisineOptions = Object.values(CuisineType);
+
+export function parseCuisine(value: string): CuisineType | undefined {
+    return Object.values(CuisineType).find(cuisineValue => cuisineValue === value);
+}

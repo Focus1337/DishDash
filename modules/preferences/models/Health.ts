@@ -35,3 +35,9 @@ export enum Health {
     Vegetarian = 'vegetarian',
     WheatFree = 'wheat-free',
 }
+
+export const healthOptions = Object.values(Health);
+
+export function parseHealth(value: string): Health | undefined {
+    return Object.values(Health).find(healthValue => healthValue === value);
+}

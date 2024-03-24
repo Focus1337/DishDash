@@ -14,6 +14,8 @@ export const HomeScreen = observer(({navigation}: HomeScreenProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
+
+
     const handleViewAll = () => {
 
     };

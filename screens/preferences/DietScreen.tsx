@@ -1,30 +1,68 @@
 import {observer} from "mobx-react";
-import React, {useState} from "react";
-import {useColors} from "../../hooks/useColors.ts";
-import {useStyles} from "../../hooks/useStyles.ts";
-import {Alert, SafeAreaView} from "react-native";
-import {CuisineScreenProps, DietScreenProps} from "../../utils/navigation/navigationTypes.ts";
+import React, {useEffect, useState} from "react";
+import {DietScreenProps} from "../../utils/navigation/navigationTypes.ts";
 import {Preferences} from "../../components/preferences/Preferences.tsx";
-
-let diets = ['None', 'Vegan', 'Lactose Intolerance', 'Soy Allergy', 'Pescatarian', 'Gluten-Free', 'Shellfish Allergy', 'Vegetarian', 'Kosher'];
+import {useRootStore} from "../../hooks/useRootStore.ts";
+import {Diet, dietOptions, parseDiet} from "../../modules/preferences/models/Diet.ts";
+import {useFocusEffect} from "@react-navigation/core";
 
 export const DietScreen = observer(({navigation}: DietScreenProps) => {
-    const handlePrevious = () => navigation.navigate("Allergy");
-    const handleNextStep = () => navigation.navigate("Cuisine");
-    const handleSkip = () => {
-        Alert.alert("Skipped", "skip");
+    let [diets, setDiets] = useState<string[]>([]);
+    const {dietStore} = useRootStore();
+
+    const updateDiets = () => {
+        dietStore.actionHandleGet().then(() => {
+            let items = dietStore.items;
+
+            if (items !== null) {
+                setDiets(Object.values(dietStore.items!));
+            }
+        });
     };
+
+    useEffect(() => {
+        updateDiets();
+    }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            updateDiets();
+
+            return () => {
+            };
+        }, [dietStore])
+    );
+
+    useEffect(() => {
+        console.log(diets);
+    }, [diets]);
+
+    const handlePrevious = () => navigation.navigate("Allergy");
+
+    const handleNextStep = async () => {
+        await dietStore.actionHandleForceAdd(diets.map(d => parseDiet(d)).filter((d): d is Diet => d !== undefined));
+
+        return navigation.navigate("Cuisine");
+    };
+
+    const handleSkip = async () => {
+        await dietStore.actionHandleForceAdd([]);
+
+        return navigation.navigate("Cuisine");
+    };
+
     const handleAdd = (value: string) => {
-        Alert.alert(value);
+        setDiets(prev => [...prev, value]);
     };
 
     const handleRemove = (value: string) => {
-        Alert.alert("removed: " + value);
+        setDiets(prev => prev.filter(p => p != value))
     };
 
     return (
         <Preferences headerText={'Do you have any dietary restrictions?'}
-                     text={'This will help us curate more recipe experiences for you.'} items={diets}
+                     text={'This will help us curate more recipe experiences for you.'} items={dietOptions}
+                     activatedItems={diets}
                      onItemActivate={handleAdd} onItemDeactivate={handleRemove} pageCount={3}
                      currentPage={2} onPrevious={handlePrevious} onNext={handleNextStep} onSkip={handleSkip}
                      isFinal={false}/>

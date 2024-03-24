@@ -10,6 +10,7 @@ interface IPreferencesProps {
     headerText: string,
     text: string,
     items: string[],
+    activatedItems: string[],
     onItemActivate: (value: string) => void,
     onItemDeactivate: (value: string) => void,
     pageCount: number,
@@ -48,7 +49,8 @@ export const Preferences = (props: IPreferencesProps) => {
                 </View>
 
                 <ScrollView style={{marginTop: 10}} contentContainerStyle={localStyles.mainChoose}>
-                    {props.items.map(a => <OptionButton key={a} text={a} onActivate={() => props.onItemActivate(a)}
+                    {props.items.map(a => <OptionButton key={a} text={a} pressed={props.activatedItems.includes(a)}
+                                                        onActivate={() => props.onItemActivate(a)}
                                                         onDeactivate={() => props.onItemDeactivate(a)}/>)}
                 </ScrollView>
             </View>

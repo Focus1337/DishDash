@@ -6,3 +6,9 @@ export enum Diet {
     LowFat = 'low-fat',
     LowSodium = 'low-sodium'
 }
+
+export const dietOptions = Object.values(Diet);
+
+export function parseDiet(value: string): Diet | undefined {
+    return Object.values(Diet).find(dietValue => dietValue === value);
+}
