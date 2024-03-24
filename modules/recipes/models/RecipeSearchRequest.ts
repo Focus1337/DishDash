@@ -10,20 +10,20 @@ export interface RecipeSearchRequest {
     q: string; // Обязателен, если не указаны другие параметры
     EdamamAccountUser?: string;
     ingr?: string;
-    diet?: Array<Diet>;
-    health?: Array<Health>;
-    cuisineType?: Array<CuisineType>;
-    mealType?: Array<MealType>;
-    dishType?: Array<DishType>;
+    diet?: Diet[];
+    health?: Health[];
+    cuisineType?: CuisineType[];
+    mealType?: MealType[];
+    dishType?: DishType[];
     calories?: string;
     time?: string;
     imageSize?: Array<'LARGE' | 'REGULAR' | 'SMALL' | 'THUMBNAIL'>;
-    excluded?: Array<string>;
+    excluded?: string[];
     random?: boolean;
     nutrients?: NutrientsRequest;
-    field?: Array<string>;
+    field?: string[];
     co2EmissionsClass?: 'A+' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
-    tag?: Array<string>;
+    tag?: string[];
     sysTag?: Array<'live'>;
     AcceptLanguage?: string;
 }

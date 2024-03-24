@@ -5,40 +5,48 @@ import {RecipeSearchResponse} from "../../modules/recipes/models/RecipeSearchRes
 import {RecipeSearchRequest} from "../../modules/recipes/models/RecipeSearchRequest.ts";
 
 const apiClient = axios.create({
-    baseURL: API_URL
+    baseURL: API_URL,
+    paramsSerializer: params => {
+        const searchParams = new URLSearchParams();
+
+        searchParams.append('app_id', APP_ID);
+        searchParams.append('app_key', APP_KEY);
+
+        Object.entries(params).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
+                value.forEach(item => searchParams.append(key, item));
+            } else if (value !== undefined) {
+                searchParams.append(key, value);
+            }
+        });
+
+        return searchParams.toString();
+    }
 });
-
-apiClient.interceptors.request.use(config => {
-    const params = new URLSearchParams(config.params || {});
-
-    params.append('app_id', APP_ID);
-    params.append('app_key', APP_KEY);
-
-    config.params = params;
-    return config;
-}, error => console.log(error));
 
 export class ApiClient {
     searchRecipes = async (request: RecipeSearchRequest): Promise<Recipe[]> => {
         try {
-            const params: { [key: string]: any } = {
-                type: request.type,
-                q: request.q,
-                ...(request.diet && {diet: request.diet.join(',')}),
-                ...(request.health && {health: request.health.join(',')}),
-                ...(request.cuisineType && {cuisineType: request.cuisineType.join(',')}),
-            };
-
             const response = await apiClient.get<RecipeSearchResponse>('', {
-                params: params,
+                params: {
+                    type: request.type,
+                    q: request.q,
+                    health: request.health,
+                    diet: request.diet,
+                    cuisineType: request.cuisineType
+                },
             });
 
-            return response.data.hits.map((hit) => hit.recipe);
+            console.log(response.request);
+
+            let result = response.data.hits.map((hit) => hit.recipe);
+
+            console.log(result);
+
+            return result;
         } catch (error) {
             if (error instanceof AxiosError) {
-                console.error(error.request);
-                console.error(error.response!.data);
-                console.error('Network or other error:', error);
+                console.error('Network or other error:', error.response?.data);
             }
             throw error;
         }
