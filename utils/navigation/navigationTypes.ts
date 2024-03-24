@@ -1,14 +1,14 @@
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {RecipeSearchRequest} from "../../modules/recipes/models/RecipeSearchRequest.ts";
 
 export type NativeStackParamList = {
     Welcome: undefined,
     Allergy: undefined,
     Cuisine: undefined,
     Diet: undefined,
-    SearchResult: undefined,
+    SearchResult: { request: RecipeSearchRequest },
     RecipeDetails: undefined,
     Tab: undefined
-    // TodoItem: { itemId: string };
 };
 
 export type WelcomeScreenProps = NativeStackScreenProps<NativeStackParamList, 'Welcome'>;

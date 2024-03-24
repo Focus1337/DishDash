@@ -32,10 +32,6 @@ export const AllergyScreen = observer(({navigation}: AllergyScreenProps) => {
         }, [healthStore])
     );
 
-    useEffect(() => {
-        console.log(allergies);
-    }, [allergies]);
-
     const handlePrevious = () => navigation.navigate("Welcome");
 
     const handleNextStep = async () => {

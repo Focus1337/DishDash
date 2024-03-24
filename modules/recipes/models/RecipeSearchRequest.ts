@@ -4,10 +4,10 @@ import {Health} from "../../preferences/models/Health.ts";
 import {CuisineType} from "../../preferences/models/CuisineType.ts";
 import {DishType} from "./DishType.ts";
 
-interface RecipeSearchRequest {
+export interface RecipeSearchRequest {
     type: 'public' | 'user' | 'any';
     beta?: boolean;
-    q?: string; // Обязателен, если не указаны другие параметры
+    q: string; // Обязателен, если не указаны другие параметры
     EdamamAccountUser?: string;
     ingr?: string;
     diet?: Array<Diet>;

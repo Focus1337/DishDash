@@ -33,10 +33,6 @@ export const DietScreen = observer(({navigation}: DietScreenProps) => {
         }, [dietStore])
     );
 
-    useEffect(() => {
-        console.log(diets);
-    }, [diets]);
-
     const handlePrevious = () => navigation.navigate("Allergy");
 
     const handleNextStep = async () => {

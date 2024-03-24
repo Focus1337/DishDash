@@ -1,21 +1,22 @@
-import RecipesService from "./RecipesService.ts";
+import RemoteRecipesService from "./RemoteRecipesService.ts";
 import {makeAutoObservable} from "mobx";
 import {Recipe} from "./models/Recipe.ts";
+import {RecipeSearchRequest} from "./models/RecipeSearchRequest.ts";
 
 export class RecipesStore {
-    private recipesService: RecipesService;
+    private service: RemoteRecipesService;
     isLoading = false;
     recipes: Recipe[] = [];
 
     constructor() {
         makeAutoObservable(this);
-        this.recipesService = new RecipesService();
+        this.service = new RemoteRecipesService();
     }
 
-    actionHandleGet(query: string) {
+    actionHandleSearch(request: RecipeSearchRequest) {
         this.setIsLoading(true);
 
-        this.recipesService.searchRecipes(query)
+        this.service.searchRecipes(request)
             .then(res => {
                 this.setRecipes(res);
             })

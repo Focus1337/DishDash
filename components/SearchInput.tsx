@@ -7,25 +7,26 @@ import {useState} from "react";
 import {set} from "mobx";
 
 interface SearchInputProps {
-    onSearch: () => void;
+    onSearch: (query: string) => void;
+    initValue?: string;
 }
 
 export const SearchInput = (props: SearchInputProps) => {
-    let [request, setRequest] = useState<string>('');
+    let [query, setQuery] = useState<string>(props.initValue ?? '');
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     const clearText = () => {
-        setRequest('');
+        setQuery('');
     }
 
     return (
         <View style={[localStyles.searchInput]}>
             <FontAwesome name={"search"} color={Colors.text300} size={20}/>
             <TextInput style={[{flex: 1}, styles.textBody14R]} numberOfLines={1} inputMode={'text'}
-                       placeholder={"Search anything..."} onChangeText={newText => setRequest(newText)}
-                       onSubmitEditing={props.onSearch} returnKeyType={"search"} value={request}/>
-            {request !== '' ?
+                       placeholder={"Search anything..."} onChangeText={newText => setQuery(newText)}
+                       onSubmitEditing={() => props.onSearch(query)} returnKeyType={"search"} value={query}/>
+            {query !== '' ?
                 <TouchableOpacity onPress={clearText}>
                     <Feather name={"x"} color={Colors.text300} size={20}/>
                 </TouchableOpacity> :

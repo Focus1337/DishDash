@@ -5,18 +5,35 @@ import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import {CategoryScroll} from "../../components/recipes/CategoryScroll.tsx";
 import {SearchInput} from "../../components/SearchInput.tsx";
+import {cuisineOptions} from "../../modules/preferences/models/CuisineType.ts";
+import {useRootStore} from "../../hooks/useRootStore.ts";
+import Navigation from "../../utils/navigation/Navigation.ts";
+import {RecipeSearchRequest} from "../../modules/recipes/models/RecipeSearchRequest.ts";
 
 export const ExploreScreen = observer(({navigation}: ExploreScreenProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
+    const {cuisineStore, healthStore, dietStore} = useRootStore();
 
-    const categories = ["Korean", "Australian", "American", "Mexican", "Brazilian", "French", "Nigerian", "Italian", "Chinese", "Indian"];
+    const handleSearch = async (query: string) => {
+        await Promise.all([cuisineStore.actionHandleGet(), healthStore.actionHandleGet(), dietStore.actionHandleGet()]);
+
+        let searchRequest: RecipeSearchRequest = {
+            type: 'any',
+            q: query,
+            cuisineType: cuisineStore.items!,
+            health: healthStore.items!,
+            diet: dietStore.items!
+        };
+
+        Navigation.navigate("SearchResult", {request: searchRequest});
+    };
 
     return (
         <SafeAreaView style={localStyles.container}>
             <Text style={styles.textHeader4}>Search</Text>
-            <SearchInput/>
-            <CategoryScroll title={"Categories"} data={categories}/>
+            <SearchInput onSearch={handleSearch}/>
+            <CategoryScroll title={"Categories"} data={cuisineOptions}/>
         </SafeAreaView>
     );
 })
