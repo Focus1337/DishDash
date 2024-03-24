@@ -37,13 +37,7 @@ export class ApiClient {
                 },
             });
 
-            console.log(response.request);
-
-            let result = response.data.hits.map((hit) => hit.recipe);
-
-            console.log(result);
-
-            return result;
+            return response.data.hits.map((hit) => hit.recipe);
         } catch (error) {
             if (error instanceof AxiosError) {
                 console.error('Network or other error:', error.response?.data);

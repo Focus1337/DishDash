@@ -13,16 +13,13 @@ export class RecipesStore {
         this.service = new RemoteRecipesService();
     }
 
-    actionHandleSearch(request: RecipeSearchRequest) {
+    actionHandleSearch = async (request: RecipeSearchRequest) => {
         this.setIsLoading(true);
 
-        this.service.searchRecipes(request)
-            .then(res => {
-                this.setRecipes(res);
-            })
-            .finally(() => {
-                setTimeout(() => this.setIsLoading(false), 0);
-            });
+        let res = await this.service.searchRecipes(request);
+        this.setRecipes(res);
+
+        setTimeout(() => this.setIsLoading(false), 0);
     }
 
     private setIsLoading(value: boolean) {

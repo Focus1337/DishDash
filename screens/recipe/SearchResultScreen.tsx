@@ -17,14 +17,14 @@ export const SearchResultScreen = observer(({navigation, route}: SearchResultScr
     const styles = useStyles(Colors);
 
     useEffect(() => {
-        onSearch(route.params.request.q);
+        (async () => await onSearch(route.params.request.q))();
     }, []);
 
-    const onSearch = (query: string) => {
+    const onSearch = async (query: string) => {
         let req = route.params.request;
         req.q = query;
 
-        recipesStore.actionHandleSearch(req);
+        await recipesStore.actionHandleSearch(req);
         setRecipes(recipesStore.recipes);
     };
 
