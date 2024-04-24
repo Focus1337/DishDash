@@ -25,13 +25,14 @@ export const RecipeScroll = (props: RecipeScrollProps) => {
                 </TouchableOpacity>
             </View>
 
-            <FlatList contentContainerStyle={{gap: 20}} horizontal={true}
-                      showsHorizontalScrollIndicator={false} data={props.data}
-                      keyExtractor={(_, index) => index.toString()}
-                      renderItem={({item}) => <RecipeCard recipe={item} onPress={() => {
-                          Navigation.navigate("RecipeDetails", {recipe: item})
-                      }}/>}
-            />
+            {props.data?.length! > 0
+                ? <FlatList contentContainerStyle={{gap: 20, flexGrow: 1}} horizontal={true}
+                            showsHorizontalScrollIndicator={false} data={props.data}
+                            keyExtractor={(_, index) => index.toString()}
+                            renderItem={({item}) => <RecipeCard recipe={item} onPress={() => {
+                                Navigation.navigate("RecipeDetails", {recipe: item})
+                            }}/>}/>
+                : <Text>No recipes yet</Text>}
         </View>
     );
 };

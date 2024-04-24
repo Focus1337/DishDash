@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {ImageLibraryOptions, launchImageLibrary} from "react-native-image-picker";
-import {Image, StyleSheet, TouchableOpacity} from "react-native";
+import {Dimensions, Image, StyleSheet, TouchableOpacity} from "react-native";
+
+const windowWidth = Dimensions.get('window').width;
+const avatarSize = windowWidth * 0.25;
 
 export const UserAvatar = () => {
     const [avatarSource, setAvatarSource] = useState<string | null>(null);
@@ -31,15 +34,15 @@ export const UserAvatar = () => {
     );
 };
 
-let localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
     avatarContainer: {
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     avatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: avatarSize,
+        height: avatarSize,
+        borderRadius: avatarSize / 2,
     },
 });

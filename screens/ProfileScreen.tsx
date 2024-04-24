@@ -52,7 +52,7 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
     };
 
     const handleViewAll = () => {
-
+        Navigation.navigate("RecipesResult", {recipes: savedRecipes});
     };
 
     const handleOnEdit = () => {

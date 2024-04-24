@@ -9,6 +9,7 @@ export type NativeStackParamList = {
     Diet: undefined,
     SearchResult: { request: RecipeSearchRequest },
     RecipeDetails: { recipe: Recipe },
+    RecipesResult: { recipes: Recipe[] },
     Tab: undefined
 };
 
@@ -18,6 +19,7 @@ export type CuisineScreenProps = NativeStackScreenProps<NativeStackParamList, 'C
 export type DietScreenProps = NativeStackScreenProps<NativeStackParamList, 'Diet'>;
 export type SearchResultScreenProps = NativeStackScreenProps<NativeStackParamList, 'SearchResult'>;
 export type RecipeDetailsScreenProps = NativeStackScreenProps<NativeStackParamList, 'RecipeDetails'>;
+export type RecipesResultScreenProps = NativeStackScreenProps<NativeStackParamList, 'RecipesResult'>;
 
 export type TabParamList = {
     Explore: undefined,

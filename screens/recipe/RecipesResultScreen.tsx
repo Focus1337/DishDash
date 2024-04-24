@@ -1,32 +1,21 @@
 import {observer} from "mobx-react";
-import {SearchResultScreenProps} from "../../utils/navigation/navigationTypes.ts";
+import {RecipesResultScreenProps} from "../../utils/navigation/navigationTypes.ts";
+import React, {useEffect, useState} from "react";
+import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
-import {Recipe} from "../../modules/recipes/models/Recipe.ts";
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Feather from "react-native-vector-icons/Feather";
-import React, {useEffect, useState} from "react";
-import {SearchInput} from "../../components/SearchInput.tsx";
 import {SearchRecipeScroll} from "../../components/recipes/SearchRecipeScroll.tsx";
-import {useRootStore} from "../../hooks/useRootStore.ts";
 
-export const SearchResultScreen = observer(({navigation, route}: SearchResultScreenProps) => {
+export const RecipesResultScreen = observer(({navigation, route}: RecipesResultScreenProps) => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
-    const {remoteRecipesStore} = useRootStore();
     const {Colors} = useColors();
     const styles = useStyles(Colors);
 
     useEffect(() => {
-        (async () => await onSearch(route.params.request.q))();
+        setRecipes(route.params.recipes);
     }, []);
-
-    const onSearch = async (query: string) => {
-        let req = route.params.request;
-        req.q = query;
-
-        await remoteRecipesStore.actionHandleSearch(req);
-        setRecipes(remoteRecipesStore.recipes);
-    };
 
     return (
         <SafeAreaView style={localStyles.container}>
@@ -35,7 +24,6 @@ export const SearchResultScreen = observer(({navigation, route}: SearchResultScr
                                   style={[localStyles.backButton]}>
                     <Feather name={"arrow-left"} color={Colors.text600} size={24}/>
                 </TouchableOpacity>
-                <SearchInput onSearch={onSearch} initValue={route.params.request.q}/>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 <Text style={styles.textHeader6S}>Sort By</Text>
@@ -44,8 +32,7 @@ export const SearchResultScreen = observer(({navigation, route}: SearchResultScr
                     <Feather name={"sliders"} color={Colors.primaryAccent} size={24}/>
                 </View>
             </View>
-            {remoteRecipesStore.isLoading ? <Text>Loading tastiest recipes...</Text> :
-                <SearchRecipeScroll data={recipes}/>}
+            <SearchRecipeScroll data={recipes}/>
         </SafeAreaView>
     );
 })

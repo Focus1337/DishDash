@@ -1,10 +1,14 @@
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
 import GradientBackground from "../GradientBackground.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import {Recipe} from "../../modules/recipes/models/Recipe.ts";
+
+const windowWidth = Dimensions.get('window').width;
+const cardWidth = windowWidth * 0.4;
+const cardHeight = cardWidth * 0.8;
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -51,13 +55,13 @@ export const RecipeCard = ({recipe, onPress}: RecipeCardProps) => {
     );
 };
 
-let localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10,
-        width: 160,
-        height: 140
+        width: cardWidth,
+        height: cardHeight
     },
 
     like: {

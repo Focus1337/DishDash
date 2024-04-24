@@ -11,6 +11,7 @@ import {MealType} from "../../modules/recipes/models/MealType.ts";
 import {DishType} from "../../modules/recipes/models/DishType.ts";
 import {useRootStore} from "../../hooks/useRootStore.ts";
 import {useEffect, useState} from "react";
+import Navigation from "../../utils/navigation/Navigation.ts";
 
 export const HomeScreen = observer(({navigation}: HomeScreenProps) => {
     const {Colors} = useColors();
@@ -30,6 +31,7 @@ export const HomeScreen = observer(({navigation}: HomeScreenProps) => {
     }, [localRecipesStore.recent]);
 
     const handleViewAll = () => {
+        Navigation.navigate("RecipesResult", {recipes: recentRecipes});
     };
 
     return (

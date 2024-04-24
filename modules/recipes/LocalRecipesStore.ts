@@ -20,7 +20,6 @@ export class LocalRecipesStore {
 
     actionHandleGetRecent = async () => {
         let prev = await this.service.getRecent();
-        console.log(prev);
 
         this.setRecent(prev);
     };

@@ -13,6 +13,7 @@ import {TabNavigationContainer} from "./screens/TabNavigationContainer.tsx";
 import {RecipeDetailsScreen} from "./screens/recipe/RecipeDetailsScreen.tsx";
 import {SearchResultScreen} from "./screens/recipe/SearchResultScreen.tsx";
 import {useRootStore} from "./hooks/useRootStore.ts";
+import {RecipesResultScreen} from "./screens/recipe/RecipesResultScreen.tsx";
 
 const Stack = createNativeStackNavigator<NativeStackParamList>();
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
                 <Stack.Screen name={'Cuisine'} component={CuisineScreen}/>
                 <Stack.Screen name={'RecipeDetails'} component={RecipeDetailsScreen}/>
                 <Stack.Screen name={'SearchResult'} component={SearchResultScreen}/>
+                <Stack.Screen name={'RecipesResult'} component={RecipesResultScreen}/>
             </Stack.Navigator>
             <ThemedStatusBar/>
         </NavigationContainer>

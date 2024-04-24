@@ -1,8 +1,13 @@
 import {useColors} from "../../hooks/useColors.ts";
 import {useStyles} from "../../hooks/useStyles.ts";
-import {ImageBackground, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity} from "react-native";
 import GradientBackground from "../GradientBackground.tsx";
 import React from "react";
+import Navigation from "../../utils/navigation/Navigation.ts";
+import {useRootStore} from "../../hooks/useRootStore.ts";
+import {parseCuisine} from "../../modules/preferences/models/CuisineType.ts";
+
+const {width} = Dimensions.get('window');
 
 interface CategoryCardProps {
     category: string;
@@ -11,9 +16,16 @@ interface CategoryCardProps {
 export const CategoryCard = ({category}: CategoryCardProps) => {
     const {Colors} = useColors();
     const styles = useStyles(Colors);
+    const {remoteRecipesStore} = useRootStore();
+
+    const onPress = async () => {
+        await remoteRecipesStore.actionHandleSearchByCuisine(parseCuisine(category)!);
+
+        Navigation.navigate("RecipesResult", {recipes: remoteRecipesStore.recipes});
+    }
 
     return (
-        <TouchableOpacity style={[localStyles.container]}>
+        <TouchableOpacity style={[localStyles.container]} onPress={onPress}>
             <ImageBackground source={require('../../assets/images/receipt_image.jpg')} resizeMode={'cover'}
                              borderRadius={10} style={{flex: 1}}>
                 <GradientBackground styles={localStyles.main} end={{x: 0, y: 0}} opacity={0.5}>
@@ -30,8 +42,8 @@ let localStyles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         borderRadius: 10,
-        width: 160,
-        height: 70
+        width: width * 0.4,
+        height: width * 0.2,
     },
 
     main: {
