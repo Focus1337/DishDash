@@ -4,7 +4,7 @@ import {GestureResponderEvent, SafeAreaView, ScrollView, StyleSheet, Text, Touch
 import {PageNumber} from "./PageNumber.tsx";
 import {OptionButton} from "./OptionButton.tsx";
 import {FilledMainButton, OutlinedMainButton} from "../buttons.tsx";
-import React from "react";
+import React, {ReactNode} from "react";
 
 interface IPreferencesProps {
     headerText: string,
@@ -18,7 +18,8 @@ interface IPreferencesProps {
     onPrevious: (event: GestureResponderEvent) => void,
     onNext: (event: GestureResponderEvent) => void,
     onSkip: (event: GestureResponderEvent) => void,
-    isFinal: boolean
+    isFinal: boolean,
+    children?: ReactNode;
 }
 
 export const Preferences = (props: IPreferencesProps) => {
@@ -53,6 +54,8 @@ export const Preferences = (props: IPreferencesProps) => {
                                                         onActivate={() => props.onItemActivate(a)}
                                                         onDeactivate={() => props.onItemDeactivate(a)}/>)}
                 </ScrollView>
+
+                {props.children}
             </View>
             <View style={localStyles.controls}>
                 <OutlinedMainButton onPress={props.onPrevious} title="Previous" buttonStyles={styles.buttonWidth40}/>

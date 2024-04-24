@@ -1,5 +1,5 @@
 import {observer} from "mobx-react";
-import {Modal, SafeAreaView, StyleSheet, Text, TextInput, View} from "react-native";
+import {Modal, Platform, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View} from "react-native";
 import {ProfileScreenProps} from "../utils/navigation/navigationTypes.ts";
 import React, {useEffect, useState} from "react";
 import {useColors} from "../hooks/useColors.ts";
@@ -175,9 +175,8 @@ let localStyles = StyleSheet.create({
     },
 
     profileContainer: {
-        flex: 1,
+        flex: 0,
         flexDirection: 'column',
-        gap: 20
     },
 
     profileHeader: {
@@ -196,6 +195,7 @@ let localStyles = StyleSheet.create({
     profileEdit: {
         paddingLeft: 20,
         gap: 6,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        marginVertical: 10
     }
 });

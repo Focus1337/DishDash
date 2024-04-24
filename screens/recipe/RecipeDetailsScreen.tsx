@@ -274,6 +274,7 @@ let localStyles = StyleSheet.create({
         flex: 3,
         padding: 20,
         gap: 20,
+        paddingBottom: 40,
         backgroundColor: 'white',
     }
 });
