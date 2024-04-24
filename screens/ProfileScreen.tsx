@@ -119,8 +119,6 @@ export const ProfileScreen = observer(({navigation}: ProfileScreenProps) => {
                 </View>
             </View>
             <RecipeScroll title={"Saved Recipes"} data={savedRecipes!} onViewAll={handleViewAll}/>
-            <View style={{flex: 2}}>
-            </View>
         </SafeAreaView>
     );
 })
